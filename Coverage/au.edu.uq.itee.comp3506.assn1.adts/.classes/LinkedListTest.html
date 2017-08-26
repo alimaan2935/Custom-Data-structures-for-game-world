@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LinkedListTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">au.edu.uq.itee.comp3506.assn1.adts</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LinkedListTest (au.edu.uq.itee.comp3506.assn1.adts)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LinkedListTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (45/ 45)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package au.edu.uq.itee.comp3506.assn1.adts;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.hamcrest.CoreMatchers.equalTo;
+<i>4</i>&nbsp;import static org.hamcrest.CoreMatchers.is;
+<i>5</i>&nbsp;import static org.junit.Assert.assertThat;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.junit.Before;
+<i>8</i>&nbsp;import org.junit.Test;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import au.edu.uq.itee.comp3506.assn1.gameworld.GameObject;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import org.junit.Test;
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;public class LinkedListTest {</b>
+<i>15</i>&nbsp;	private LinkedList&lt;GameObject&gt; list;
+<i>16</i>&nbsp;	
+<i>17</i>&nbsp;	@Before
+<i>18</i>&nbsp;	public void createEmptyLinkedList() {
+<b class="fc"><i>19</i>&nbsp;		list = new LinkedList&lt;GameObject&gt;();</b>
+<b class="fc"><i>20</i>&nbsp;	}</b>
+<i>21</i>&nbsp;	
+<i>22</i>&nbsp;	@Test
+<i>23</i>&nbsp;	public void newListIsEmpty() {
+<b class="fc"><i>24</i>&nbsp;		assertThat(&quot;A newly created list is not empty.&quot;, list.isEmpty(), is(equalTo(true)));</b>
+<b class="fc"><i>25</i>&nbsp;	}</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;	@Test
+<i>28</i>&nbsp;	public void addOneItem() {
+<b class="fc"><i>29</i>&nbsp;		GameObject itemToAdd = new GameObject(&quot;Item to be Added&quot;);</b>
+<b class="fc"><i>30</i>&nbsp;		list.addToEnd(itemToAdd);</b>
+<b class="fc"><i>31</i>&nbsp;		assertThat(&quot;Adding an item resulted in an empty list.&quot;, list.isEmpty(), is(equalTo(false)));</b>
+<b class="fc"><i>32</i>&nbsp;		assertThat(&quot;Adding one item did not result in it being the last item.&quot;, list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>33</i>&nbsp;		assertThat(&quot;The only item added to the list is not the first item in the list.&quot;, </b>
+<b class="fc"><i>34</i>&nbsp;		           list.getFirst(), is(equalTo(itemToAdd)));</b>
+<b class="fc"><i>35</i>&nbsp;		assertThat(&quot;The only item added to the list is not the last item in the list.&quot;, </b>
+<b class="fc"><i>36</i>&nbsp;		           list.getLast(), is(equalTo(itemToAdd)));</b>
+<b class="fc"><i>37</i>&nbsp;	}</b>
+<i>38</i>&nbsp;	
+<i>39</i>&nbsp;	@Test
+<i>40</i>&nbsp;	public void insertOneItem() {
+<b class="fc"><i>41</i>&nbsp;		GameObject itemToInsert = new GameObject(&quot;Item to be Inserted&quot;);</b>
+<b class="fc"><i>42</i>&nbsp;		list.insert(itemToInsert);</b>
+<b class="fc"><i>43</i>&nbsp;		assertThat(&quot;Inserting an item resulted in an empty list.&quot;, list.isEmpty(), is(equalTo(false)));</b>
+<b class="fc"><i>44</i>&nbsp;		assertThat(&quot;Inserting one item did not result in it being the last item.&quot;, list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>45</i>&nbsp;		assertThat(&quot;The only item inserted into the list is not the first item in the list.&quot;, </b>
+<b class="fc"><i>46</i>&nbsp;		           list.getFirst(), is(equalTo(itemToInsert)));</b>
+<b class="fc"><i>47</i>&nbsp;		assertThat(&quot;The only item inserted into the list is not the last item in the list.&quot;, </b>
+<b class="fc"><i>48</i>&nbsp;		           list.getLast(), is(equalTo(itemToInsert)));</b>
+<b class="fc"><i>49</i>&nbsp;	}</b>
+<i>50</i>&nbsp;	
+<i>51</i>&nbsp;	@Test
+<i>52</i>&nbsp;	public void addTwoItems() {
+<b class="fc"><i>53</i>&nbsp;		GameObject item1ToAdd = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>54</i>&nbsp;		GameObject item2ToAdd = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>55</i>&nbsp;		list.addToEnd(item1ToAdd);</b>
+<b class="fc"><i>56</i>&nbsp;		list.addToEnd(item2ToAdd);</b>
+<b class="fc"><i>57</i>&nbsp;		assertThat(&quot;Adding multiple items to end of list did not result in the last one being the last item.&quot;, </b>
+<b class="fc"><i>58</i>&nbsp;		           list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>59</i>&nbsp;		assertThat(&quot;The first item added to the list is not the first item in the list.&quot;, </b>
+<b class="fc"><i>60</i>&nbsp;		           list.getFirst(), is(equalTo(item1ToAdd)));</b>
+<b class="fc"><i>61</i>&nbsp;		assertThat(&quot;The last item added to the list is not the last item in the list.&quot;, </b>
+<b class="fc"><i>62</i>&nbsp;		           list.getLast(), is(equalTo(item2ToAdd)));</b>
+<b class="fc"><i>63</i>&nbsp;	}</b>
+<i>64</i>&nbsp;	
+<i>65</i>&nbsp;	@Test
+<i>66</i>&nbsp;	public void insertTwoItems() {
+<b class="fc"><i>67</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>68</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>69</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>70</i>&nbsp;		list.insert(item2ToInsert);</b>
+<b class="fc"><i>71</i>&nbsp;		assertThat(&quot;Inserting multiple items into an empty list resulted in the cursor refering to the end of the list.&quot;, </b>
+<b class="fc"><i>72</i>&nbsp;		           list.isLast(), is(equalTo(false)));</b>
+<b class="fc"><i>73</i>&nbsp;		assertThat(&quot;The first item inserted into an empty list is not the last item in the list.&quot;, </b>
+<b class="fc"><i>74</i>&nbsp;		           list.getLast(), is(equalTo(item1ToInsert)));</b>
+<b class="fc"><i>75</i>&nbsp;		assertThat(&quot;The last item inserted into an empty list is not the first item in the list.&quot;, </b>
+<b class="fc"><i>76</i>&nbsp;		           list.getFirst(), is(equalTo(item2ToInsert)));</b>
+<b class="fc"><i>77</i>&nbsp;	}</b>
+<i>78</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-08-26 12:41</div>
+</div>
+</body>
+</html>

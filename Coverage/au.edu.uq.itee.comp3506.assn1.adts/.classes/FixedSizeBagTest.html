@@ -1,0 +1,144 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FixedSizeBagTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">au.edu.uq.itee.comp3506.assn1.adts</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FixedSizeBagTest (au.edu.uq.itee.comp3506.assn1.adts)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FixedSizeBagTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (27/ 27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package au.edu.uq.itee.comp3506.assn1.adts;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.hamcrest.CoreMatchers.equalTo;
+<i>4</i>&nbsp;import static org.hamcrest.CoreMatchers.is;
+<i>5</i>&nbsp;import static org.junit.Assert.assertThat;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.junit.Before;
+<i>8</i>&nbsp;import org.junit.Test;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import au.edu.uq.itee.comp3506.assn1.gameworld.GameObject;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;/**
+<i>14</i>&nbsp; * Test driver for the FixedSizeBag.
+<i>15</i>&nbsp; * @author Richard Thomas &lt;richard.thomas@uq.edu.au&gt;
+<i>16</i>&nbsp; *
+<i>17</i>&nbsp; */
+<b class="fc"><i>18</i>&nbsp;public class FixedSizeBagTest {</b>
+<i>19</i>&nbsp;	private FixedSizeBag&lt;GameObject&gt; bag;
+<i>20</i>&nbsp;	
+<i>21</i>&nbsp;	@Before
+<i>22</i>&nbsp;	public void setupFixedSizeBag() {
+<b class="fc"><i>23</i>&nbsp;		bag = new FixedSizeBag&lt;GameObject&gt;(3);</b>
+<b class="fc"><i>24</i>&nbsp;	}</b>
+<i>25</i>&nbsp;	
+<i>26</i>&nbsp;	@Test
+<i>27</i>&nbsp;	public void newBagIsEmpty() {
+<b class="fc"><i>28</i>&nbsp;		assertThat(&quot;A newly created bag does not have a size of 0.&quot;, bag.size(), is(equalTo(0)));</b>
+<b class="fc"><i>29</i>&nbsp;	}</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;	@Test
+<i>32</i>&nbsp;	public void addOneItem() {
+<b class="fc"><i>33</i>&nbsp;		GameObject itemToAdd = new GameObject(&quot;Item to be Added&quot;);</b>
+<b class="fc"><i>34</i>&nbsp;		assertThat(&quot;Item not successfully added to an empty bag.&quot;, bag.add(itemToAdd), is(equalTo(true)));</b>
+<b class="fc"><i>35</i>&nbsp;		assertThat(&quot;Bag size is not 1 after adding 1 item.&quot;, bag.size(), is(equalTo(1)));</b>
+<b class="fc"><i>36</i>&nbsp;		assertThat(&quot;The only item added to the bag is not the first item in the bag.&quot;, </b>
+<b class="fc"><i>37</i>&nbsp;		           bag.firstItem(), is(equalTo(itemToAdd)));</b>
+<b class="fc"><i>38</i>&nbsp;	}</b>
+<i>39</i>&nbsp;	
+<i>40</i>&nbsp;	@Test
+<i>41</i>&nbsp;	public void addMultipleItems() {
+<b class="fc"><i>42</i>&nbsp;		GameObject item1ToAdd = new GameObject(&quot;Item 1 to be Added&quot;);</b>
+<b class="fc"><i>43</i>&nbsp;		GameObject item2ToAdd = new GameObject(&quot;Item 2 to be Added&quot;);</b>
+<b class="fc"><i>44</i>&nbsp;		bag.add(item1ToAdd);</b>
+<b class="fc"><i>45</i>&nbsp;		bag.add(item2ToAdd);</b>
+<b class="fc"><i>46</i>&nbsp;		assertThat(&quot;Bag size is not 2 after adding 2 items.&quot;, bag.size(), is(equalTo(2)));</b>
+<b class="fc"><i>47</i>&nbsp;	}</b>
+<i>48</i>&nbsp;	
+<i>49</i>&nbsp;	@Test
+<i>50</i>&nbsp;	public void overFillBag() {
+<b class="fc"><i>51</i>&nbsp;		GameObject item1ToAdd = new GameObject(&quot;Item 1 to be Added&quot;);</b>
+<b class="fc"><i>52</i>&nbsp;		GameObject item2ToAdd = new GameObject(&quot;Item 2 to be Added&quot;);</b>
+<b class="fc"><i>53</i>&nbsp;		GameObject item3ToAdd = new GameObject(&quot;Item 3 to be Added&quot;);</b>
+<b class="fc"><i>54</i>&nbsp;		GameObject itemTooManyToAdd = new GameObject(&quot;Item that should not be Added&quot;);</b>
+<b class="fc"><i>55</i>&nbsp;		bag.add(item1ToAdd);</b>
+<b class="fc"><i>56</i>&nbsp;		bag.add(item2ToAdd);</b>
+<b class="fc"><i>57</i>&nbsp;		bag.add(item3ToAdd);</b>
+<b class="fc"><i>58</i>&nbsp;		assertThat(&quot;Added more items than maximum size of bag.&quot;, bag.add(itemTooManyToAdd), is(equalTo(false)));</b>
+<b class="fc"><i>59</i>&nbsp;		assertThat(&quot;Bag size is not 3 after over filling a bag with a maximum size of 3.&quot;, bag.size(), is(equalTo(3)));</b>
+<b class="fc"><i>60</i>&nbsp;	}</b>
+<i>61</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-08-26 12:41</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RectangularGrid</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">au.edu.uq.itee.comp3506.assn1.adts</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RectangularGrid (au.edu.uq.itee.comp3506.assn1.adts)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RectangularGrid</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package au.edu.uq.itee.comp3506.assn1.adts;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;/**
+<i>4</i>&nbsp; * A two-dimensional rectangular grid to hold items in a positional relationship to each other.
+<i>5</i>&nbsp; * Implements Grid ADT class
+<i>6</i>&nbsp; *
+<i>7</i>&nbsp; * Memory efficiency: O(n) - linear - This is because the implementation resembles 2-dimensional array.
+<i>8</i>&nbsp; * The number of elements in this grid will be x * y where x and y are number of rows and columns respectively.
+<i>9</i>&nbsp; * So the memory efficiency is equal to number of elements stored in the grid. In the worst case when
+<i>10</i>&nbsp; * the grid is gull, the number of elements will be number of rows multiplied by number of columns.
+<i>11</i>&nbsp; *
+<i>12</i>&nbsp; * @author ALi Nawaz Maan &lt;a.maan@uqconnect.edu.au&gt;
+<i>13</i>&nbsp; * @param &lt;T&gt; The type of element held in the rectangular grid.
+<i>14</i>&nbsp; */
+<i>15</i>&nbsp;public class RectangularGrid&lt;T&gt; implements Grid&lt;T&gt; {
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    T[][] grid;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Constructor for Rectangular grid object
+<i>22</i>&nbsp;     *
+<i>23</i>&nbsp;     * Runtime Efficiency: O(n) - linear - this is because when creating this 2-dimensional grid,
+<i>24</i>&nbsp;     * java initializes every position of element with null. So initializing every element
+<i>25</i>&nbsp;     * conforms to runtime efficiency equal to order of number of elements which is the size of the grid
+<i>26</i>&nbsp;     * x * y.
+<i>27</i>&nbsp;     *
+<i>28</i>&nbsp;     * @param x number of columns in the rectangular grid
+<i>29</i>&nbsp;     * @param y number of rows in the rectangular grid
+<i>30</i>&nbsp;     * @throws IllegalArgumentException when column and row values are not positive integers
+<i>31</i>&nbsp;     */
+<b class="fc"><i>32</i>&nbsp;    public RectangularGrid(int x, int y) {</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;        if (x &gt; 0 &amp;&amp; y &gt; 0) {</b>
+<b class="fc"><i>35</i>&nbsp;            grid = (T[][]) new Object[y][x];</b>
+<i>36</i>&nbsp;        }else {
+<b class="fc"><i>37</i>&nbsp;            throw new IllegalArgumentException();</b>
+<i>38</i>&nbsp;        }
+<b class="fc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    /**
+<i>42</i>&nbsp;     * Place an item at a fixed position in the rectangular grid.
+<i>43</i>&nbsp;     * Overwrites whatever was at the position.
+<i>44</i>&nbsp;     *
+<i>45</i>&nbsp;     * Runtime Efficiency: O(1) - constant - this is because the grid is initialized with known size
+<i>46</i>&nbsp;     * and when placing an element onto a known coordinate location, java will directly access
+<i>47</i>&nbsp;     * that position under coordinates and write the element data in that particular memory location.
+<i>48</i>&nbsp;     *
+<i>49</i>&nbsp;     * @param item Item to be placed in the grid.
+<i>50</i>&nbsp;     * @param x X Coordinate of the position of the item.
+<i>51</i>&nbsp;     * @param y Y Coordinate of the position of the item.
+<i>52</i>&nbsp;     * @throws IndexOutOfBoundsException If x or y coordinates are out of bounds.
+<i>53</i>&nbsp;     */
+<i>54</i>&nbsp;    public void place(T item, int x, int y){
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;        if ((x &lt; grid[0].length &amp;&amp; x&gt;=0) &amp;&amp; (y &lt; grid.length &amp;&amp; y&gt;=0)) {</b>
+<b class="fc"><i>57</i>&nbsp;            grid[y][x] = item;</b>
+<i>58</i>&nbsp;        }else {
+<b class="fc"><i>59</i>&nbsp;            throw new IndexOutOfBoundsException(&quot;Grid coordinates cannot be negative or out of grid size(coordinates)&quot;);</b>
+<i>60</i>&nbsp;        }
+<b class="fc"><i>61</i>&nbsp;    }</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    /**
+<i>64</i>&nbsp;     * Return the item at the indicated position.
+<i>65</i>&nbsp;     *
+<i>66</i>&nbsp;     * Runtime Efficiency: O(1) - constant - This is same as {@code place()} because the grid is initialized with
+<i>67</i>&nbsp;     * known number of rows and columns. When retrieving an element from the grid with knows coordinate location,
+<i>68</i>&nbsp;     * java will refer that memory location directly and return the element in a constant time.
+<i>69</i>&nbsp;     *
+<i>70</i>&nbsp;     * @param x X Coordinate of the position of the item.
+<i>71</i>&nbsp;     * @param y Y Coordinate of the position of the item.
+<i>72</i>&nbsp;     * @return Item at this position or null.
+<i>73</i>&nbsp;     * @throws IndexOutOfBoundsException If x or y coordinates are out of bounds.
+<i>74</i>&nbsp;     */
+<i>75</i>&nbsp;    public T get(int x, int y) {
+<i>76</i>&nbsp;
+<b class="fc"><i>77</i>&nbsp;        if ((x &lt;= grid[0].length &amp;&amp; x&gt;=0) &amp;&amp; (y &lt;= grid.length &amp;&amp; y&gt;=0)) {</b>
+<b class="fc"><i>78</i>&nbsp;            return grid[y][x];</b>
+<i>79</i>&nbsp;        }else {
+<b class="fc"><i>80</i>&nbsp;            throw new ArrayIndexOutOfBoundsException(&quot;These coordinates doesn&#39;t exist in the grid&quot;);</b>
+<i>81</i>&nbsp;        }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    }
+<i>84</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-08-26 12:41</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RemovableBag</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">au.edu.uq.itee.comp3506.assn1.adts</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RemovableBag (au.edu.uq.itee.comp3506.assn1.adts)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">RemovableBag</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package au.edu.uq.itee.comp3506.assn1.adts;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;
+<i>4</i>&nbsp;/**
+<i>5</i>&nbsp; * A simple collection that holds items and provides access to each item.
+<i>6</i>&nbsp; * There is an implied ordering of elements to allow iteration through the items in the bag,
+<i>7</i>&nbsp; * but there is no guarantee that the order in which items are added will reflect the actual
+<i>8</i>&nbsp; * order of how they are stored, or accessed during iteration through the collection.
+<i>9</i>&nbsp; * 
+<i>10</i>&nbsp; * &lt;p&gt;The bag maintains a &#39;cursor&#39; that is a reference to an element in the bag, 
+<i>11</i>&nbsp; * providing a mechanism to iterate over the collection via {@code firstItem} and {@code nextItem}.
+<i>12</i>&nbsp; * &lt;blockquote&gt;&lt;pre&gt;&lt;code&gt;
+<i>13</i>&nbsp; * {@code if (bag.size() &gt; 0)} {
+<i>14</i>&nbsp; *      item = bag.firstItem();
+<i>15</i>&nbsp; *      while (!bag.isLast()) {
+<i>16</i>&nbsp; *          // Make use of item.
+<i>17</i>&nbsp; *          item = bag.nextItem();
+<i>18</i>&nbsp; *      }
+<i>19</i>&nbsp; *  }
+<i>20</i>&nbsp; * &lt;/blockquote&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/p&gt;
+<i>21</i>&nbsp; * 
+<i>22</i>&nbsp; * @author Richard Thomas &lt;richard.thomas@uq.edu.au&gt;
+<i>23</i>&nbsp; *
+<i>24</i>&nbsp; * @param &lt;T&gt; The type of element held in the bag.
+<i>25</i>&nbsp; */
+<i>26</i>&nbsp;public interface RemovableBag&lt;T&gt; {
+<i>27</i>&nbsp;	/**
+<i>28</i>&nbsp;	 * Add an item to the bag.
+<i>29</i>&nbsp;	 * @param item The item to be added.
+<i>30</i>&nbsp;	 * @return true if item is added to the bag; false if can&#39;t be added. 
+<i>31</i>&nbsp;	 */
+<i>32</i>&nbsp;	boolean add(T item);
+<i>33</i>&nbsp;	
+<i>34</i>&nbsp;	/**
+<i>35</i>&nbsp;	 * Remove the item from the bag.
+<i>36</i>&nbsp;	 * @param item The item to be removed.
+<i>37</i>&nbsp;	 * @return true if item is removed from the bag; false if item was not in bag.
+<i>38</i>&nbsp;	 */
+<i>39</i>&nbsp;	boolean remove(T item);
+<i>40</i>&nbsp;	
+<i>41</i>&nbsp;	/**
+<i>42</i>&nbsp;	 * Set the internal cursor to refer to the first item in the bag.
+<i>43</i>&nbsp;	 * @return The first item or null if bag is empty.
+<i>44</i>&nbsp;	 */
+<i>45</i>&nbsp;	T firstItem();
+<i>46</i>&nbsp;	
+<i>47</i>&nbsp;	/**
+<i>48</i>&nbsp;	 * Move the internal cursor to the next item in the bag.
+<i>49</i>&nbsp;	 * If the internal cursor refers to the last item, do not move the cursor and return {@code null}.
+<i>50</i>&nbsp;	 * @return The next item or null if there is no next item.
+<i>51</i>&nbsp;	 */
+<i>52</i>&nbsp;	T nextItem();
+<i>53</i>&nbsp;	
+<i>54</i>&nbsp;	/**
+<i>55</i>&nbsp;	 * @return true if the internal cursor is at the last item in the bag; false otherwise.
+<i>56</i>&nbsp;	 */
+<i>57</i>&nbsp;	boolean isLast();
+<i>58</i>&nbsp;	
+<i>59</i>&nbsp;	/**
+<i>60</i>&nbsp;	 * @return The number of items in the bag.
+<i>61</i>&nbsp;	 */
+<i>62</i>&nbsp;	int size();
+<i>63</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-08-26 12:41</div>
+</div>
+</body>
+</html>
