@@ -139,3 +139,8 @@ public class FixedSizeBag<T> implements RemovableBag<T> {
 		return this.bag.isLast();
 	}
 }
+
+
+/*
+ * Analysis
+ */

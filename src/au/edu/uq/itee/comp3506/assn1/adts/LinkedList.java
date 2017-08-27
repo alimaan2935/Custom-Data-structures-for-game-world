@@ -344,3 +344,7 @@ public class LinkedList<T> implements GameList<T> {
 		}
 	}
 }
+
+/*
+ * Analysis
+ */

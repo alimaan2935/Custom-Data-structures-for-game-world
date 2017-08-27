@@ -19,7 +19,7 @@ public class MyRectangularGridTest {
 
 
 	/**
-	 * Create multiple RectangularGrid objects to be used for testing.
+	 * Create a small RectangularGrid to be used for testing.
 	 * The grid is 3 cells in length and 4 cells in width.
 	 */
 	@Before
@@ -28,25 +28,28 @@ public class MyRectangularGridTest {
 
 	}
 
+	/**
+	 * Try to construct a grid with negative number of rows and columns
+	 * @exception IllegalArgumentException The number of rows or columns cannot be negative
+	 */
 	@Test (expected = IllegalArgumentException.class)
-	public void invalidConstruction1() {
-		new RectangularGrid<GameObject>(0, 0);
-	}
-
-	@Test (expected = IllegalArgumentException.class)
-	public void invalidConstruction2() {
+	public void invalidConstruction() {
 		new RectangularGrid<GameObject>(-1, -1);
 	}
 
+	/**
+	 * Try to access coordinates outside of the grid declaration specifications
+	 * @exception ArrayIndexOutOfBoundsException The access coordinates must conform to grid declaration specification
+	 */
 	@Test (expected = ArrayIndexOutOfBoundsException.class)
-	public void invalidGridAccess1() {
-		grid1.get(4, 3);
-	}
-	@Test (expected = ArrayIndexOutOfBoundsException.class)
-	public void invalidGridAccess2() {
+	public void invalidGridAccess() {
 		grid1.get(-1, 3);
 	}
 
+	/**
+	 * Try to place objects in a grid location outside the declaration specification
+	 * @exception IllegalArgumentException The placement coordinates must be within the grid declaration specs
+	 */
 	@Test (expected = IndexOutOfBoundsException.class)
 	public void invalidGridPlacement() {
 		GameObject itemToInsert = new GameObject("Item to Place");
@@ -55,6 +58,9 @@ public class MyRectangularGridTest {
 		grid1.place(itemToInsert, 3, 4);
 	}
 
+	/**
+	 * Placing objects in the grid and accessing those
+	 */
 	@Test
 	public void validGridAccess() {
 		GameObject itemToInsert1 = new GameObject("Item to Insert");

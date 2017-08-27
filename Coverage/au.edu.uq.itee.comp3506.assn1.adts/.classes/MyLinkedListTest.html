@@ -53,7 +53,7 @@
     100%
   </span>
   <span class="absValue">
-    (15/ 15)
+    (14/ 14)
   </span>
 </td>
 <td class="coverageStat">
@@ -61,7 +61,7 @@
     97.8%
   </span>
   <span class="absValue">
-    (179/ 183)
+    (177/ 181)
   </span>
 </td>
 </tr>
@@ -83,248 +83,316 @@
 <i>9</i>&nbsp;
 <i>10</i>&nbsp;import au.edu.uq.itee.comp3506.assn1.gameworld.GameObject;
 <i>11</i>&nbsp;
-<i>12</i>&nbsp;import org.junit.Test;
-<i>13</i>&nbsp;
-<b class="fc"><i>14</i>&nbsp;public class MyLinkedListTest {</b>
-<i>15</i>&nbsp;	private LinkedList&lt;GameObject&gt; list;
+<i>12</i>&nbsp;/**
+<i>13</i>&nbsp; * Test driver for the LinkedList.
+<i>14</i>&nbsp; * @author Ali Nawaz Maan &lt;a.maan@uqconnect.edu.au&gt;
+<i>15</i>&nbsp; */
 <i>16</i>&nbsp;
-<i>17</i>&nbsp;	@Before
-<i>18</i>&nbsp;	public void createEmptyLinkedList() {
-<b class="fc"><i>19</i>&nbsp;		list = new LinkedList&lt;GameObject&gt;();</b>
-<b class="fc"><i>20</i>&nbsp;	}</b>
-<i>21</i>&nbsp;
-<i>22</i>&nbsp;	@Test
-<i>23</i>&nbsp;	public void newListIsEmpty() {
-<b class="fc"><i>24</i>&nbsp;		assertThat(&quot;A newly created list is not empty.&quot;, list.isEmpty(), is(equalTo(true)));</b>
-<b class="fc"><i>25</i>&nbsp;	}</b>
-<i>26</i>&nbsp;
-<i>27</i>&nbsp;	@Test (expected = IndexOutOfBoundsException.class)
-<i>28</i>&nbsp;	public void invalidRemoval() {
-<b class="fc"><i>29</i>&nbsp;		list.remove();</b>
-<b class="nc"><i>30</i>&nbsp;	}</b>
-<i>31</i>&nbsp;
-<i>32</i>&nbsp;	@Test
-<i>33</i>&nbsp;	public void addOneItem() {
-<b class="fc"><i>34</i>&nbsp;		GameObject itemToAdd = new GameObject(&quot;Item to be Added&quot;);</b>
-<b class="fc"><i>35</i>&nbsp;		list.addToEnd(itemToAdd);</b>
-<b class="fc"><i>36</i>&nbsp;		assertThat(&quot;Adding an item resulted in an empty list.&quot;, list.isEmpty(), is(equalTo(false)));</b>
-<b class="fc"><i>37</i>&nbsp;		assertThat(&quot;Adding one item did not result in it being the last item.&quot;, list.isLast(), is(equalTo(true)));</b>
-<b class="fc"><i>38</i>&nbsp;		assertThat(&quot;The only item added to the list is not the first item in the list.&quot;,</b>
-<b class="fc"><i>39</i>&nbsp;				list.getFirst(), is(equalTo(itemToAdd)));</b>
-<b class="fc"><i>40</i>&nbsp;		assertThat(&quot;The only item added to the list is not the last item in the list.&quot;,</b>
-<b class="fc"><i>41</i>&nbsp;				list.getLast(), is(equalTo(itemToAdd)));</b>
-<b class="fc"><i>42</i>&nbsp;		assertThat(&quot;The size of the list is not 1&quot;,</b>
-<b class="fc"><i>43</i>&nbsp;				list.getSize(), is(equalTo(1)));</b>
-<b class="fc"><i>44</i>&nbsp;	}</b>
-<i>45</i>&nbsp;
-<i>46</i>&nbsp;	@Test
-<i>47</i>&nbsp;	public void insertOneItem() {
-<b class="fc"><i>48</i>&nbsp;		GameObject itemToInsert = new GameObject(&quot;Item to be Inserted&quot;);</b>
-<b class="fc"><i>49</i>&nbsp;		list.insert(itemToInsert);</b>
-<b class="fc"><i>50</i>&nbsp;		assertThat(&quot;Inserting an item resulted in an empty list.&quot;, list.isEmpty(), is(equalTo(false)));</b>
-<b class="fc"><i>51</i>&nbsp;		assertThat(&quot;Inserting one item did not result in it being the last item.&quot;, list.isLast(), is(equalTo(true)));</b>
-<b class="fc"><i>52</i>&nbsp;		assertThat(&quot;The only item inserted into the list is not the first item in the list.&quot;,</b>
-<b class="fc"><i>53</i>&nbsp;				list.getFirst(), is(equalTo(itemToInsert)));</b>
-<b class="fc"><i>54</i>&nbsp;		assertThat(&quot;The only item inserted into the list is not the last item in the list.&quot;,</b>
-<b class="fc"><i>55</i>&nbsp;				list.getLast(), is(equalTo(itemToInsert)));</b>
-<b class="fc"><i>56</i>&nbsp;		assertThat(&quot;The size of the list is not 1&quot;,</b>
-<b class="fc"><i>57</i>&nbsp;				list.getSize(), is(equalTo(1)));</b>
-<b class="fc"><i>58</i>&nbsp;	}</b>
-<i>59</i>&nbsp;
-<i>60</i>&nbsp;	@Test
-<i>61</i>&nbsp;	public void addTwoItems() {
-<b class="fc"><i>62</i>&nbsp;		GameObject item1ToAdd = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>63</i>&nbsp;		GameObject item2ToAdd = new GameObject(&quot;Item 2&quot;);</b>
-<b class="fc"><i>64</i>&nbsp;		list.addToEnd(item1ToAdd);</b>
-<b class="fc"><i>65</i>&nbsp;		list.addToEnd(item2ToAdd);</b>
-<b class="fc"><i>66</i>&nbsp;		assertThat(&quot;Adding multiple items to end of list did not result in the last one being the last item.&quot;,</b>
-<b class="fc"><i>67</i>&nbsp;				list.isLast(), is(equalTo(true)));</b>
-<b class="fc"><i>68</i>&nbsp;		assertThat(&quot;The first item added to the list is not the first item in the list.&quot;,</b>
-<b class="fc"><i>69</i>&nbsp;				list.getFirst(), is(equalTo(item1ToAdd)));</b>
-<b class="fc"><i>70</i>&nbsp;		assertThat(&quot;The last item added to the list is not the last item in the list.&quot;,</b>
-<b class="fc"><i>71</i>&nbsp;				list.getLast(), is(equalTo(item2ToAdd)));</b>
-<b class="fc"><i>72</i>&nbsp;		assertThat(&quot;The size of the list is not 2&quot;,</b>
-<b class="fc"><i>73</i>&nbsp;				list.getSize(), is(equalTo(2)));</b>
-<b class="fc"><i>74</i>&nbsp;	}</b>
-<i>75</i>&nbsp;
-<i>76</i>&nbsp;	@Test
-<i>77</i>&nbsp;	public void insertTwoItems() {
-<b class="fc"><i>78</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>79</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
-<b class="fc"><i>80</i>&nbsp;		list.insert(item1ToInsert);</b>
-<b class="fc"><i>81</i>&nbsp;		list.insert(item2ToInsert);</b>
-<b class="fc"><i>82</i>&nbsp;		assertThat(&quot;Inserting multiple items into an empty list resulted in the cursor refering to the end of the list.&quot;,</b>
-<b class="fc"><i>83</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
-<b class="fc"><i>84</i>&nbsp;		assertThat(&quot;The first item inserted into an empty list is not the last item in the list.&quot;,</b>
-<b class="fc"><i>85</i>&nbsp;				list.getLast(), is(equalTo(item1ToInsert)));</b>
-<b class="fc"><i>86</i>&nbsp;		assertThat(&quot;The last item inserted into the list is not the first item in the list.&quot;,</b>
-<b class="fc"><i>87</i>&nbsp;				list.getFirst(), is(equalTo(item2ToInsert)));</b>
-<b class="fc"><i>88</i>&nbsp;		assertThat(&quot;The size of the list is not 2&quot;,</b>
-<b class="fc"><i>89</i>&nbsp;				list.getSize(), is(equalTo(2)));</b>
-<b class="fc"><i>90</i>&nbsp;	}</b>
-<i>91</i>&nbsp;
-<i>92</i>&nbsp;	@Test
-<i>93</i>&nbsp;	public void addThreeItems() {
-<b class="fc"><i>94</i>&nbsp;		GameObject item1ToAdd = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>95</i>&nbsp;		GameObject item2ToAdd = new GameObject(&quot;Item 2&quot;);</b>
-<b class="fc"><i>96</i>&nbsp;		GameObject item3ToAdd = new GameObject(&quot;Item 3&quot;);</b>
-<b class="fc"><i>97</i>&nbsp;		list.addToEnd(item1ToAdd);</b>
-<b class="fc"><i>98</i>&nbsp;		list.addToEnd(item2ToAdd);</b>
-<b class="fc"><i>99</i>&nbsp;		list.addToEnd(item3ToAdd);</b>
-<b class="fc"><i>100</i>&nbsp;		assertThat(&quot;Adding multiple items to end of list did not result in the last one being the last item.&quot;,</b>
-<b class="fc"><i>101</i>&nbsp;				list.isLast(), is(equalTo(true)));</b>
-<b class="fc"><i>102</i>&nbsp;		assertThat(&quot;The first item added to the list is not the first item in the list.&quot;,</b>
-<b class="fc"><i>103</i>&nbsp;				list.getFirst(), is(equalTo(item1ToAdd)));</b>
-<b class="fc"><i>104</i>&nbsp;		assertThat(&quot;The last item added to the list is not the last item in the list.&quot;,</b>
-<b class="fc"><i>105</i>&nbsp;				list.getLast(), is(equalTo(item3ToAdd)));</b>
-<b class="fc"><i>106</i>&nbsp;		assertThat(&quot;The second item added to the list is not the previous item of the pointer.&quot;,</b>
-<b class="fc"><i>107</i>&nbsp;				list.getPrevious(), is(equalTo(item2ToAdd)));</b>
-<b class="fc"><i>108</i>&nbsp;		assertThat(&quot;The first item added to the list is not the previous item of the pointer at middle position.&quot;,</b>
-<b class="fc"><i>109</i>&nbsp;				list.getPrevious(), is(equalTo(item1ToAdd)));</b>
-<b class="fc"><i>110</i>&nbsp;		assertThat(&quot;The second item added to the list is not the next item of the pointer at root position.&quot;,</b>
-<b class="fc"><i>111</i>&nbsp;				list.getNext(), is(equalTo(item2ToAdd)));</b>
-<b class="fc"><i>112</i>&nbsp;		assertThat(&quot;The size of the list is not 3&quot;,</b>
-<b class="fc"><i>113</i>&nbsp;				list.getSize(), is(equalTo(3)));</b>
-<b class="fc"><i>114</i>&nbsp;	}</b>
-<i>115</i>&nbsp;
-<i>116</i>&nbsp;	@Test
-<i>117</i>&nbsp;	public void insertThreeItems() {
-<b class="fc"><i>118</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>119</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
-<b class="fc"><i>120</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
-<b class="fc"><i>121</i>&nbsp;		list.insert(item1ToInsert);</b>
-<b class="fc"><i>122</i>&nbsp;		list.insert(item2ToInsert);</b>
-<b class="fc"><i>123</i>&nbsp;		list.insert(item3ToInsert);</b>
-<b class="fc"><i>124</i>&nbsp;		assertThat(&quot;Inserting multiple items into an empty list resulted in the cursor refering to the end of the list.&quot;,</b>
-<b class="fc"><i>125</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
-<b class="fc"><i>126</i>&nbsp;		assertThat(&quot;The first item inserted into an empty list is not the last item in the list.&quot;,</b>
-<b class="fc"><i>127</i>&nbsp;				list.getLast(), is(equalTo(item1ToInsert)));</b>
-<b class="fc"><i>128</i>&nbsp;		assertThat(&quot;The last item inserted into the list is not the first item in the list.&quot;,</b>
-<b class="fc"><i>129</i>&nbsp;				list.getFirst(), is(equalTo(item3ToInsert)));</b>
-<b class="fc"><i>130</i>&nbsp;		assertThat(&quot;The second item inserted into the list is not the next item to the pointer.&quot;,</b>
-<b class="fc"><i>131</i>&nbsp;				list.getNext(), is(equalTo(item2ToInsert)));</b>
-<b class="fc"><i>132</i>&nbsp;		assertThat(&quot;The first item inserted into the list is not the next item to the pointer.&quot;,</b>
-<b class="fc"><i>133</i>&nbsp;				list.getNext(), is(equalTo(item1ToInsert)));</b>
-<b class="fc"><i>134</i>&nbsp;		assertThat(&quot;Pointer is not at the last item position&quot;,</b>
-<b class="fc"><i>135</i>&nbsp;				list.getNext(), is(equalTo(item1ToInsert)));</b>
-<b class="fc"><i>136</i>&nbsp;		assertThat(&quot;The size of the list is not 3&quot;,</b>
-<b class="fc"><i>137</i>&nbsp;				list.getSize(), is(equalTo(3)));</b>
-<b class="fc"><i>138</i>&nbsp;	}</b>
-<i>139</i>&nbsp;
-<i>140</i>&nbsp;	@Test
-<i>141</i>&nbsp;	public void insertIntoMiddle() {
-<b class="fc"><i>142</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>143</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
-<b class="fc"><i>144</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
-<b class="fc"><i>145</i>&nbsp;		GameObject item4ToInsert = new GameObject(&quot;Item 4&quot;);</b>
-<b class="fc"><i>146</i>&nbsp;		list.insert(item1ToInsert);</b>
-<b class="fc"><i>147</i>&nbsp;		list.insert(item2ToInsert);</b>
-<b class="fc"><i>148</i>&nbsp;		list.insert(item3ToInsert);</b>
-<b class="fc"><i>149</i>&nbsp;		assertThat(&quot;Inserting multiple items into an empty list resulted in the cursor refering to the end of the list.&quot;,</b>
-<b class="fc"><i>150</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
-<b class="fc"><i>151</i>&nbsp;		assertThat(&quot;The first item inserted into an empty list is not the last item in the list.&quot;,</b>
-<b class="fc"><i>152</i>&nbsp;				list.getLast(), is(equalTo(item1ToInsert)));</b>
-<b class="fc"><i>153</i>&nbsp;		assertThat(&quot;The last item inserted into the list is not the first item in the list.&quot;,</b>
-<b class="fc"><i>154</i>&nbsp;				list.getFirst(), is(equalTo(item3ToInsert)));</b>
-<b class="fc"><i>155</i>&nbsp;		assertThat(&quot;The second item inserted into the list is not the next item to the pointer.&quot;,</b>
-<b class="fc"><i>156</i>&nbsp;				list.getNext(), is(equalTo(item2ToInsert)));</b>
-<i>157</i>&nbsp;
-<b class="fc"><i>158</i>&nbsp;		list.insert(item4ToInsert);</b>
-<i>159</i>&nbsp;
-<b class="fc"><i>160</i>&nbsp;		assertThat(&quot;The fourth item inserted into the list is not after the root.&quot;,</b>
-<b class="fc"><i>161</i>&nbsp;				list.getPrevious(), is(equalTo(item3ToInsert)));</b>
-<b class="fc"><i>162</i>&nbsp;		assertThat(&quot;The fourth item inserted into the list is not after the root.&quot;,</b>
-<b class="fc"><i>163</i>&nbsp;				list.getNext(), is(equalTo(item4ToInsert)));</b>
-<b class="fc"><i>164</i>&nbsp;		assertThat(&quot;The size of the list is not 4&quot;,</b>
-<b class="fc"><i>165</i>&nbsp;				list.getSize(), is(equalTo(4)));</b>
-<b class="fc"><i>166</i>&nbsp;	}</b>
-<i>167</i>&nbsp;
-<i>168</i>&nbsp;	@Test (expected = NullPointerException.class)
-<i>169</i>&nbsp;	public void removals1() {
-<b class="fc"><i>170</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>171</i>&nbsp;		list.insert(item1ToInsert);</b>
-<b class="fc"><i>172</i>&nbsp;		assertThat(&quot;Pointer is not at the root position&quot;,</b>
-<b class="fc"><i>173</i>&nbsp;				list.getPrevious(), is(equalTo(item1ToInsert)));</b>
-<b class="fc"><i>174</i>&nbsp;		list.remove();</b>
-<b class="fc"><i>175</i>&nbsp;		assertThat(&quot;Next item of the pointer is not null&quot;,</b>
-<b class="fc"><i>176</i>&nbsp;				list.getNext(), is(equalTo(NullPointerException.class)));</b>
-<b class="nc"><i>177</i>&nbsp;		assertThat(&quot;Prev item of the pointer is not null&quot;,</b>
-<b class="nc"><i>178</i>&nbsp;				list.getPrevious(), is(equalTo(NullPointerException.class)));</b>
+<b class="fc"><i>17</i>&nbsp;public class MyLinkedListTest {</b>
+<i>18</i>&nbsp;	private LinkedList&lt;GameObject&gt; list;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;	/**
+<i>21</i>&nbsp;	 * Create an empty linked list structure
+<i>22</i>&nbsp;	 */
+<i>23</i>&nbsp;	@Before
+<i>24</i>&nbsp;	public void createEmptyLinkedList() {
+<b class="fc"><i>25</i>&nbsp;		list = new LinkedList&lt;GameObject&gt;();</b>
+<b class="fc"><i>26</i>&nbsp;	}</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;	/**
+<i>29</i>&nbsp;	 * Try to remove an element from an empty list
+<i>30</i>&nbsp;	 * @exception IndexOutOfBoundsException There is no element to be removed from the LinkedList
+<i>31</i>&nbsp;	 */
+<i>32</i>&nbsp;	@Test (expected = IndexOutOfBoundsException.class)
+<i>33</i>&nbsp;	public void invalidRemoval() {
+<b class="fc"><i>34</i>&nbsp;		list.remove();</b>
+<b class="nc"><i>35</i>&nbsp;	}</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;	/**
+<i>38</i>&nbsp;	 * Adding one item to the end of the LinkedList
+<i>39</i>&nbsp;	 * The item added must be first and last item in the list
+<i>40</i>&nbsp;	 * The size of the list must be 1
+<i>41</i>&nbsp;	 */
+<i>42</i>&nbsp;	@Test
+<i>43</i>&nbsp;	public void addOneItem() {
+<b class="fc"><i>44</i>&nbsp;		GameObject itemToAdd = new GameObject(&quot;Item to be Added&quot;);</b>
+<b class="fc"><i>45</i>&nbsp;		list.addToEnd(itemToAdd);</b>
+<b class="fc"><i>46</i>&nbsp;		assertThat(&quot;Adding an item resulted in an empty list.&quot;, list.isEmpty(), is(equalTo(false)));</b>
+<b class="fc"><i>47</i>&nbsp;		assertThat(&quot;Adding one item did not result in it being the last item.&quot;, list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>48</i>&nbsp;		assertThat(&quot;The only item added to the list is not the first item in the list.&quot;,</b>
+<b class="fc"><i>49</i>&nbsp;				list.getFirst(), is(equalTo(itemToAdd)));</b>
+<b class="fc"><i>50</i>&nbsp;		assertThat(&quot;The only item added to the list is not the last item in the list.&quot;,</b>
+<b class="fc"><i>51</i>&nbsp;				list.getLast(), is(equalTo(itemToAdd)));</b>
+<b class="fc"><i>52</i>&nbsp;		assertThat(&quot;The size of the list is not 1&quot;,</b>
+<b class="fc"><i>53</i>&nbsp;				list.getSize(), is(equalTo(1)));</b>
+<b class="fc"><i>54</i>&nbsp;	}</b>
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;	/**
+<i>57</i>&nbsp;	 * Inserting one item into the start of the LinkedList
+<i>58</i>&nbsp;	 * The item added must be first and last item in the list.
+<i>59</i>&nbsp;	 * The size of the list must be 1
+<i>60</i>&nbsp;	 */
+<i>61</i>&nbsp;	@Test
+<i>62</i>&nbsp;	public void insertOneItem() {
+<b class="fc"><i>63</i>&nbsp;		GameObject itemToInsert = new GameObject(&quot;Item to be Inserted&quot;);</b>
+<b class="fc"><i>64</i>&nbsp;		list.insert(itemToInsert);</b>
+<b class="fc"><i>65</i>&nbsp;		assertThat(&quot;Inserting an item resulted in an empty list.&quot;, list.isEmpty(), is(equalTo(false)));</b>
+<b class="fc"><i>66</i>&nbsp;		assertThat(&quot;Inserting one item did not result in it being the last item.&quot;, list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>67</i>&nbsp;		assertThat(&quot;The only item inserted into the list is not the first item in the list.&quot;,</b>
+<b class="fc"><i>68</i>&nbsp;				list.getFirst(), is(equalTo(itemToInsert)));</b>
+<b class="fc"><i>69</i>&nbsp;		assertThat(&quot;The only item inserted into the list is not the last item in the list.&quot;,</b>
+<b class="fc"><i>70</i>&nbsp;				list.getLast(), is(equalTo(itemToInsert)));</b>
+<b class="fc"><i>71</i>&nbsp;		assertThat(&quot;The size of the list is not 1&quot;,</b>
+<b class="fc"><i>72</i>&nbsp;				list.getSize(), is(equalTo(1)));</b>
+<b class="fc"><i>73</i>&nbsp;	}</b>
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;	/**
+<i>76</i>&nbsp;	 * Adding two items to the end of the LinkedList
+<i>77</i>&nbsp;	 * The first item added will be first item in the list and last one will be the last.
+<i>78</i>&nbsp;	 * The pointer must be at the last position in the list.
+<i>79</i>&nbsp;	 * The size of the list must be 2
+<i>80</i>&nbsp;	 */
+<i>81</i>&nbsp;	@Test
+<i>82</i>&nbsp;	public void addTwoItems() {
+<b class="fc"><i>83</i>&nbsp;		GameObject item1ToAdd = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>84</i>&nbsp;		GameObject item2ToAdd = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>85</i>&nbsp;		list.addToEnd(item1ToAdd);</b>
+<b class="fc"><i>86</i>&nbsp;		list.addToEnd(item2ToAdd);</b>
+<b class="fc"><i>87</i>&nbsp;		assertThat(&quot;Adding multiple items to end of list did not result in the last one being the last item.&quot;,</b>
+<b class="fc"><i>88</i>&nbsp;				list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>89</i>&nbsp;		assertThat(&quot;The first item added to the list is not the first item in the list.&quot;,</b>
+<b class="fc"><i>90</i>&nbsp;				list.getFirst(), is(equalTo(item1ToAdd)));</b>
+<b class="fc"><i>91</i>&nbsp;		assertThat(&quot;The last item added to the list is not the last item in the list.&quot;,</b>
+<b class="fc"><i>92</i>&nbsp;				list.getLast(), is(equalTo(item2ToAdd)));</b>
+<b class="fc"><i>93</i>&nbsp;		assertThat(&quot;The size of the list is not 2&quot;,</b>
+<b class="fc"><i>94</i>&nbsp;				list.getSize(), is(equalTo(2)));</b>
+<b class="fc"><i>95</i>&nbsp;	}</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;	/**
+<i>98</i>&nbsp;	 * Inserting two items at the start of the LinkedList
+<i>99</i>&nbsp;	 * The first item added will be last item in the list and last one will be the first.
+<i>100</i>&nbsp;	 * The pointer must not be at the first position in the list.
+<i>101</i>&nbsp;	 * The size of the list must be 2
+<i>102</i>&nbsp;	 */
+<i>103</i>&nbsp;	@Test
+<i>104</i>&nbsp;	public void insertTwoItems() {
+<b class="fc"><i>105</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>106</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>107</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>108</i>&nbsp;		list.insert(item2ToInsert);</b>
+<b class="fc"><i>109</i>&nbsp;		assertThat(&quot;Inserting multiple items into an empty list resulted in the cursor refering to the end of the list.&quot;,</b>
+<b class="fc"><i>110</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
+<b class="fc"><i>111</i>&nbsp;		assertThat(&quot;The first item inserted into an empty list is not the last item in the list.&quot;,</b>
+<b class="fc"><i>112</i>&nbsp;				list.getLast(), is(equalTo(item1ToInsert)));</b>
+<b class="fc"><i>113</i>&nbsp;		assertThat(&quot;The last item inserted into the list is not the first item in the list.&quot;,</b>
+<b class="fc"><i>114</i>&nbsp;				list.getFirst(), is(equalTo(item2ToInsert)));</b>
+<b class="fc"><i>115</i>&nbsp;		assertThat(&quot;The size of the list is not 2&quot;,</b>
+<b class="fc"><i>116</i>&nbsp;				list.getSize(), is(equalTo(2)));</b>
+<b class="fc"><i>117</i>&nbsp;	}</b>
+<i>118</i>&nbsp;
+<i>119</i>&nbsp;	/**
+<i>120</i>&nbsp;	 * Add three items at the end of the LinkedList
+<i>121</i>&nbsp;	 * The first item added will be first item in the list and last one will be the last.
+<i>122</i>&nbsp;	 * The middle item will be previous to the last and next to the first item in the list.
+<i>123</i>&nbsp;	 * The size of the list must be 3
+<i>124</i>&nbsp;	 */
+<i>125</i>&nbsp;	@Test
+<i>126</i>&nbsp;	public void addThreeItems() {
+<b class="fc"><i>127</i>&nbsp;		GameObject item1ToAdd = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>128</i>&nbsp;		GameObject item2ToAdd = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>129</i>&nbsp;		GameObject item3ToAdd = new GameObject(&quot;Item 3&quot;);</b>
+<b class="fc"><i>130</i>&nbsp;		list.addToEnd(item1ToAdd);</b>
+<b class="fc"><i>131</i>&nbsp;		list.addToEnd(item2ToAdd);</b>
+<b class="fc"><i>132</i>&nbsp;		list.addToEnd(item3ToAdd);</b>
+<b class="fc"><i>133</i>&nbsp;		assertThat(&quot;Adding multiple items to end of list did not result in the last one being the last item.&quot;,</b>
+<b class="fc"><i>134</i>&nbsp;				list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>135</i>&nbsp;		assertThat(&quot;The first item added to the list is not the first item in the list.&quot;,</b>
+<b class="fc"><i>136</i>&nbsp;				list.getFirst(), is(equalTo(item1ToAdd)));</b>
+<b class="fc"><i>137</i>&nbsp;		assertThat(&quot;The last item added to the list is not the last item in the list.&quot;,</b>
+<b class="fc"><i>138</i>&nbsp;				list.getLast(), is(equalTo(item3ToAdd)));</b>
+<b class="fc"><i>139</i>&nbsp;		assertThat(&quot;The second item added to the list is not the previous item of the pointer.&quot;,</b>
+<b class="fc"><i>140</i>&nbsp;				list.getPrevious(), is(equalTo(item2ToAdd)));</b>
+<b class="fc"><i>141</i>&nbsp;		assertThat(&quot;The first item added to the list is not the previous item of the pointer at middle position.&quot;,</b>
+<b class="fc"><i>142</i>&nbsp;				list.getPrevious(), is(equalTo(item1ToAdd)));</b>
+<b class="fc"><i>143</i>&nbsp;		assertThat(&quot;The second item added to the list is not the next item of the pointer at root position.&quot;,</b>
+<b class="fc"><i>144</i>&nbsp;				list.getNext(), is(equalTo(item2ToAdd)));</b>
+<b class="fc"><i>145</i>&nbsp;		assertThat(&quot;The size of the list is not 3&quot;,</b>
+<b class="fc"><i>146</i>&nbsp;				list.getSize(), is(equalTo(3)));</b>
+<b class="fc"><i>147</i>&nbsp;	}</b>
+<i>148</i>&nbsp;
+<i>149</i>&nbsp;	/**
+<i>150</i>&nbsp;	 * Insert three items at the start of the LinkedList
+<i>151</i>&nbsp;	 * The first item added will be last item in the list and last one will be the first.
+<i>152</i>&nbsp;	 * The middle item will be next to the first.
+<i>153</i>&nbsp;	 * The pointer position is confirmed when calling the next method at the end of the list.
+<i>154</i>&nbsp;	 * The size of the list must be 3
+<i>155</i>&nbsp;	 */
+<i>156</i>&nbsp;	@Test
+<i>157</i>&nbsp;	public void insertThreeItems() {
+<b class="fc"><i>158</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>159</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>160</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
+<b class="fc"><i>161</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>162</i>&nbsp;		list.insert(item2ToInsert);</b>
+<b class="fc"><i>163</i>&nbsp;		list.insert(item3ToInsert);</b>
+<b class="fc"><i>164</i>&nbsp;		assertThat(&quot;Inserting multiple items into an empty list resulted in the cursor refering to the end of the list.&quot;,</b>
+<b class="fc"><i>165</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
+<b class="fc"><i>166</i>&nbsp;		assertThat(&quot;The first item inserted into an empty list is not the last item in the list.&quot;,</b>
+<b class="fc"><i>167</i>&nbsp;				list.getLast(), is(equalTo(item1ToInsert)));</b>
+<b class="fc"><i>168</i>&nbsp;		assertThat(&quot;The last item inserted into the list is not the first item in the list.&quot;,</b>
+<b class="fc"><i>169</i>&nbsp;				list.getFirst(), is(equalTo(item3ToInsert)));</b>
+<b class="fc"><i>170</i>&nbsp;		assertThat(&quot;The second item inserted into the list is not the next item to the pointer.&quot;,</b>
+<b class="fc"><i>171</i>&nbsp;				list.getNext(), is(equalTo(item2ToInsert)));</b>
+<b class="fc"><i>172</i>&nbsp;		assertThat(&quot;The first item inserted into the list is not the next item to the pointer.&quot;,</b>
+<b class="fc"><i>173</i>&nbsp;				list.getNext(), is(equalTo(item1ToInsert)));</b>
+<b class="fc"><i>174</i>&nbsp;		assertThat(&quot;Pointer is not at the last item position&quot;,</b>
+<b class="fc"><i>175</i>&nbsp;				list.getNext(), is(equalTo(item1ToInsert)));</b>
+<b class="fc"><i>176</i>&nbsp;		assertThat(&quot;The size of the list is not 3&quot;,</b>
+<b class="fc"><i>177</i>&nbsp;				list.getSize(), is(equalTo(3)));</b>
+<b class="fc"><i>178</i>&nbsp;	}</b>
 <i>179</i>&nbsp;
-<b class="nc"><i>180</i>&nbsp;	}</b>
-<i>181</i>&nbsp;
-<i>182</i>&nbsp;	@Test
-<i>183</i>&nbsp;	public void removals2() {
-<b class="fc"><i>184</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>185</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
-<b class="fc"><i>186</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
-<b class="fc"><i>187</i>&nbsp;		GameObject item4ToInsert = new GameObject(&quot;Item 4&quot;);</b>
-<b class="fc"><i>188</i>&nbsp;		list.insert(item1ToInsert);</b>
-<b class="fc"><i>189</i>&nbsp;		list.insert(item2ToInsert);</b>
-<b class="fc"><i>190</i>&nbsp;		list.insert(item3ToInsert);</b>
-<b class="fc"><i>191</i>&nbsp;		list.insert(item4ToInsert);</b>
-<b class="fc"><i>192</i>&nbsp;		assertThat(&quot;Pointer is not at the root position&quot;,</b>
-<b class="fc"><i>193</i>&nbsp;				list.getPrevious(), is(equalTo(item4ToInsert)));</b>
-<b class="fc"><i>194</i>&nbsp;		assertThat(&quot;The third item added to the list is not the next item to the pointer&quot;,</b>
-<b class="fc"><i>195</i>&nbsp;				list.getNext(), is(equalTo(item3ToInsert)));</b>
-<b class="fc"><i>196</i>&nbsp;		assertThat(&quot;The size of the list is not 4&quot;,</b>
-<b class="fc"><i>197</i>&nbsp;				list.getSize(), is(equalTo(4)));</b>
-<i>198</i>&nbsp;
-<b class="fc"><i>199</i>&nbsp;		list.remove();</b>
-<i>200</i>&nbsp;
-<b class="fc"><i>201</i>&nbsp;		assertThat(&quot;First item inserted into the list is not next to pointer&quot;,</b>
-<b class="fc"><i>202</i>&nbsp;				list.getNext(), is(equalTo(item1ToInsert)));</b>
-<b class="fc"><i>203</i>&nbsp;		assertThat(&quot;2nd item inserted into the list is not the previous item from the last or pointer&quot;,</b>
-<b class="fc"><i>204</i>&nbsp;				list.getPrevious(), is(equalTo(item2ToInsert)));</b>
-<b class="fc"><i>205</i>&nbsp;		assertThat(&quot;The root (4th item) is not previous to 2nd item or pointer&quot;,</b>
-<b class="fc"><i>206</i>&nbsp;				list.getPrevious(), is(equalTo(item4ToInsert)));</b>
-<b class="fc"><i>207</i>&nbsp;		assertThat(&quot;2nd Item is not next to the root or pointer&quot;,</b>
-<b class="fc"><i>208</i>&nbsp;				list.getNext(), is(equalTo(item2ToInsert)));</b>
-<b class="fc"><i>209</i>&nbsp;		assertThat(&quot;The size of the list is not 3&quot;,</b>
-<b class="fc"><i>210</i>&nbsp;				list.getSize(), is(equalTo(3)));</b>
-<b class="fc"><i>211</i>&nbsp;	}</b>
-<i>212</i>&nbsp;
-<i>213</i>&nbsp;	@Test
-<i>214</i>&nbsp;	public void removals3() {
-<b class="fc"><i>215</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>216</i>&nbsp;		list.insert(item1ToInsert);</b>
-<b class="fc"><i>217</i>&nbsp;		list.remove();</b>
-<b class="fc"><i>218</i>&nbsp;		assertThat(&quot;First item of the list is not null&quot;,</b>
-<b class="fc"><i>219</i>&nbsp;				list.getFirst(), is(equalTo(null)));</b>
-<b class="fc"><i>220</i>&nbsp;		assertThat(&quot;Last item of the list is not null&quot;,</b>
-<b class="fc"><i>221</i>&nbsp;				list.getLast(), is(equalTo(null)));</b>
-<b class="fc"><i>222</i>&nbsp;		assertThat(&quot;Last item of the list is not null&quot;,</b>
-<b class="fc"><i>223</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
+<i>180</i>&nbsp;	/**
+<i>181</i>&nbsp;	 * Insert an element into somewhere middle of the list
+<i>182</i>&nbsp;	 * The element inserted must be next to the previous position of the pointer.
+<i>183</i>&nbsp;	 * Pointer position must be at the newly inserted item.
+<i>184</i>&nbsp;	 * The size of the list must be 4
+<i>185</i>&nbsp;	 */
+<i>186</i>&nbsp;	@Test
+<i>187</i>&nbsp;	public void insertIntoMiddle() {
+<b class="fc"><i>188</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>189</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>190</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
+<b class="fc"><i>191</i>&nbsp;		GameObject item4ToInsert = new GameObject(&quot;Item 4&quot;);</b>
+<b class="fc"><i>192</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>193</i>&nbsp;		list.insert(item2ToInsert);</b>
+<b class="fc"><i>194</i>&nbsp;		list.insert(item3ToInsert);</b>
+<b class="fc"><i>195</i>&nbsp;		assertThat(&quot;Inserting multiple items into an empty list resulted in the cursor refering to the end of the list.&quot;,</b>
+<b class="fc"><i>196</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
+<b class="fc"><i>197</i>&nbsp;		assertThat(&quot;The first item inserted into an empty list is not the last item in the list.&quot;,</b>
+<b class="fc"><i>198</i>&nbsp;				list.getLast(), is(equalTo(item1ToInsert)));</b>
+<b class="fc"><i>199</i>&nbsp;		assertThat(&quot;The last item inserted into the list is not the first item in the list.&quot;,</b>
+<b class="fc"><i>200</i>&nbsp;				list.getFirst(), is(equalTo(item3ToInsert)));</b>
+<b class="fc"><i>201</i>&nbsp;		assertThat(&quot;The second item inserted into the list is not the next item to the pointer.&quot;,</b>
+<b class="fc"><i>202</i>&nbsp;				list.getNext(), is(equalTo(item2ToInsert)));</b>
+<i>203</i>&nbsp;
+<b class="fc"><i>204</i>&nbsp;		list.insert(item4ToInsert);</b>
+<i>205</i>&nbsp;
+<b class="fc"><i>206</i>&nbsp;		assertThat(&quot;The fourth item inserted into the list is not after the root.&quot;,</b>
+<b class="fc"><i>207</i>&nbsp;				list.getPrevious(), is(equalTo(item3ToInsert)));</b>
+<b class="fc"><i>208</i>&nbsp;		assertThat(&quot;The fourth item inserted into the list is not after the root.&quot;,</b>
+<b class="fc"><i>209</i>&nbsp;				list.getNext(), is(equalTo(item4ToInsert)));</b>
+<b class="fc"><i>210</i>&nbsp;		assertThat(&quot;The size of the list is not 4&quot;,</b>
+<b class="fc"><i>211</i>&nbsp;				list.getSize(), is(equalTo(4)));</b>
+<b class="fc"><i>212</i>&nbsp;	}</b>
+<i>213</i>&nbsp;
+<i>214</i>&nbsp;	/**
+<i>215</i>&nbsp;	 * Removing an inserted object from the list.
+<i>216</i>&nbsp;	 * The pointer next and previous must be null after removal
+<i>217</i>&nbsp;	 */
+<i>218</i>&nbsp;	@Test (expected = NullPointerException.class)
+<i>219</i>&nbsp;	public void removals1() {
+<b class="fc"><i>220</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>221</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>222</i>&nbsp;		assertThat(&quot;Pointer is not at the root position&quot;,</b>
+<b class="fc"><i>223</i>&nbsp;				list.getPrevious(), is(equalTo(item1ToInsert)));</b>
 <i>224</i>&nbsp;
-<b class="fc"><i>225</i>&nbsp;	}</b>
+<b class="fc"><i>225</i>&nbsp;		list.remove(); // Removal</b>
 <i>226</i>&nbsp;
-<i>227</i>&nbsp;	@Test
-<i>228</i>&nbsp;	public void findItem() {
-<b class="fc"><i>229</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
-<b class="fc"><i>230</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
-<b class="fc"><i>231</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
-<b class="fc"><i>232</i>&nbsp;		GameObject item4ToInsert = new GameObject(&quot;Item 4&quot;);</b>
-<b class="fc"><i>233</i>&nbsp;		list.insert(item1ToInsert);</b>
-<b class="fc"><i>234</i>&nbsp;		list.insert(item2ToInsert);</b>
-<b class="fc"><i>235</i>&nbsp;		list.insert(item3ToInsert);</b>
-<b class="fc"><i>236</i>&nbsp;		list.insert(item4ToInsert);</b>
-<b class="fc"><i>237</i>&nbsp;		assertThat(&quot;Item is not found&quot;,</b>
-<b class="fc"><i>238</i>&nbsp;				list.find(item1ToInsert), is(equalTo(true)));</b>
-<b class="fc"><i>239</i>&nbsp;		assertThat(&quot;Pointer is not iat the last position&quot;,</b>
-<b class="fc"><i>240</i>&nbsp;				list.isLast(), is(equalTo(true)));</b>
-<b class="fc"><i>241</i>&nbsp;		assertThat(&quot;2nd item is not the previous item to the last item in the list or pointer&quot;,</b>
-<b class="fc"><i>242</i>&nbsp;				list.getPrevious(), is(equalTo(item2ToInsert)));</b>
-<b class="fc"><i>243</i>&nbsp;		assertThat(&quot;Item previous to the pointer is not found&quot;,</b>
-<b class="fc"><i>244</i>&nbsp;				list.find(item3ToInsert), is(equalTo(true)));</b>
-<i>245</i>&nbsp;
-<b class="fc"><i>246</i>&nbsp;	}</b>
-<i>247</i>&nbsp;}
+<b class="fc"><i>227</i>&nbsp;		assertThat(&quot;Next item of the pointer is not null&quot;,</b>
+<b class="fc"><i>228</i>&nbsp;				list.getNext(), is(equalTo(NullPointerException.class)));</b>
+<b class="nc"><i>229</i>&nbsp;		assertThat(&quot;Prev item of the pointer is not null&quot;,</b>
+<b class="nc"><i>230</i>&nbsp;				list.getPrevious(), is(equalTo(NullPointerException.class)));</b>
+<i>231</i>&nbsp;
+<b class="nc"><i>232</i>&nbsp;	}</b>
+<i>233</i>&nbsp;
+<i>234</i>&nbsp;	/**
+<i>235</i>&nbsp;	 * Removing an object from the middle of the list.
+<i>236</i>&nbsp;	 * The next and previous nodes in the list must be properly
+<i>237</i>&nbsp;	 * connected after removing the object.
+<i>238</i>&nbsp;	 * The size of the list must be 3 after removal
+<i>239</i>&nbsp;	 */
+<i>240</i>&nbsp;	@Test
+<i>241</i>&nbsp;	public void removals2() {
+<b class="fc"><i>242</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>243</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>244</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
+<b class="fc"><i>245</i>&nbsp;		GameObject item4ToInsert = new GameObject(&quot;Item 4&quot;);</b>
+<b class="fc"><i>246</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>247</i>&nbsp;		list.insert(item2ToInsert);</b>
+<b class="fc"><i>248</i>&nbsp;		list.insert(item3ToInsert);</b>
+<b class="fc"><i>249</i>&nbsp;		list.insert(item4ToInsert);</b>
+<b class="fc"><i>250</i>&nbsp;		assertThat(&quot;Pointer is not at the root position&quot;,</b>
+<b class="fc"><i>251</i>&nbsp;				list.getPrevious(), is(equalTo(item4ToInsert)));</b>
+<b class="fc"><i>252</i>&nbsp;		assertThat(&quot;The third item added to the list is not the next item to the pointer&quot;,</b>
+<b class="fc"><i>253</i>&nbsp;				list.getNext(), is(equalTo(item3ToInsert)));</b>
+<b class="fc"><i>254</i>&nbsp;		assertThat(&quot;The size of the list is not 4&quot;,</b>
+<b class="fc"><i>255</i>&nbsp;				list.getSize(), is(equalTo(4)));</b>
+<i>256</i>&nbsp;
+<b class="fc"><i>257</i>&nbsp;		list.remove();</b>
+<i>258</i>&nbsp;
+<b class="fc"><i>259</i>&nbsp;		assertThat(&quot;First item inserted into the list is not next to pointer&quot;,</b>
+<b class="fc"><i>260</i>&nbsp;				list.getNext(), is(equalTo(item1ToInsert)));</b>
+<b class="fc"><i>261</i>&nbsp;		assertThat(&quot;2nd item inserted into the list is not the previous item from the last or pointer&quot;,</b>
+<b class="fc"><i>262</i>&nbsp;				list.getPrevious(), is(equalTo(item2ToInsert)));</b>
+<b class="fc"><i>263</i>&nbsp;		assertThat(&quot;The root (4th item) is not previous to 2nd item or pointer&quot;,</b>
+<b class="fc"><i>264</i>&nbsp;				list.getPrevious(), is(equalTo(item4ToInsert)));</b>
+<b class="fc"><i>265</i>&nbsp;		assertThat(&quot;2nd Item is not next to the root or pointer&quot;,</b>
+<b class="fc"><i>266</i>&nbsp;				list.getNext(), is(equalTo(item2ToInsert)));</b>
+<b class="fc"><i>267</i>&nbsp;		assertThat(&quot;The size of the list is not 3&quot;,</b>
+<b class="fc"><i>268</i>&nbsp;				list.getSize(), is(equalTo(3)));</b>
+<b class="fc"><i>269</i>&nbsp;	}</b>
+<i>270</i>&nbsp;
+<i>271</i>&nbsp;	/**
+<i>272</i>&nbsp;	 * Testing the pointer position and references after removal of an object
+<i>273</i>&nbsp;	 * from the list. First and last elements must be null.
+<i>274</i>&nbsp;	 */
+<i>275</i>&nbsp;	@Test
+<i>276</i>&nbsp;	public void removals3() {
+<b class="fc"><i>277</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>278</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>279</i>&nbsp;		list.remove();</b>
+<b class="fc"><i>280</i>&nbsp;		assertThat(&quot;First item of the list is not null&quot;,</b>
+<b class="fc"><i>281</i>&nbsp;				list.getFirst(), is(equalTo(null)));</b>
+<b class="fc"><i>282</i>&nbsp;		assertThat(&quot;Last item of the list is not null&quot;,</b>
+<b class="fc"><i>283</i>&nbsp;				list.getLast(), is(equalTo(null)));</b>
+<b class="fc"><i>284</i>&nbsp;		assertThat(&quot;Pointer is at the last position of an empty list&quot;,</b>
+<b class="fc"><i>285</i>&nbsp;				list.isLast(), is(equalTo(false)));</b>
+<i>286</i>&nbsp;
+<b class="fc"><i>287</i>&nbsp;	}</b>
+<i>288</i>&nbsp;
+<i>289</i>&nbsp;	/**
+<i>290</i>&nbsp;	 * Finding an element in the list.
+<i>291</i>&nbsp;	 * The cursor must be at the element position after finding.
+<i>292</i>&nbsp;	 * The method must be able to find the element wherever in the list
+<i>293</i>&nbsp;	 * regardless of the pointer position.
+<i>294</i>&nbsp;	 */
+<i>295</i>&nbsp;	@Test
+<i>296</i>&nbsp;	public void findItem() {
+<b class="fc"><i>297</i>&nbsp;		GameObject item1ToInsert = new GameObject(&quot;Item 1&quot;);</b>
+<b class="fc"><i>298</i>&nbsp;		GameObject item2ToInsert = new GameObject(&quot;Item 2&quot;);</b>
+<b class="fc"><i>299</i>&nbsp;		GameObject item3ToInsert = new GameObject(&quot;Item 3&quot;);</b>
+<b class="fc"><i>300</i>&nbsp;		GameObject item4ToInsert = new GameObject(&quot;Item 4&quot;);</b>
+<b class="fc"><i>301</i>&nbsp;		list.insert(item1ToInsert);</b>
+<b class="fc"><i>302</i>&nbsp;		list.insert(item2ToInsert);</b>
+<b class="fc"><i>303</i>&nbsp;		list.insert(item3ToInsert);</b>
+<b class="fc"><i>304</i>&nbsp;		list.insert(item4ToInsert);</b>
+<b class="fc"><i>305</i>&nbsp;		assertThat(&quot;Item is not found&quot;,</b>
+<b class="fc"><i>306</i>&nbsp;				list.find(item1ToInsert), is(equalTo(true)));</b>
+<b class="fc"><i>307</i>&nbsp;		assertThat(&quot;Pointer is not iat the last position&quot;,</b>
+<b class="fc"><i>308</i>&nbsp;				list.isLast(), is(equalTo(true)));</b>
+<b class="fc"><i>309</i>&nbsp;		assertThat(&quot;2nd item is not the previous item to the last item in the list or pointer&quot;,</b>
+<b class="fc"><i>310</i>&nbsp;				list.getPrevious(), is(equalTo(item2ToInsert)));</b>
+<b class="fc"><i>311</i>&nbsp;		assertThat(&quot;Item previous to the pointer is not found&quot;,</b>
+<b class="fc"><i>312</i>&nbsp;				list.find(item3ToInsert), is(equalTo(true)));</b>
+<i>313</i>&nbsp;
+<b class="fc"><i>314</i>&nbsp;	}</b>
+<i>315</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2017-08-26 12:41</div>
+    <div style="float:right;">generated on 2017-08-27 13:20</div>
 </div>
 </body>
 </html>

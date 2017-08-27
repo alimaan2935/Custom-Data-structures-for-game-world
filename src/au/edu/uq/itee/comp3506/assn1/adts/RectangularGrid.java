@@ -82,3 +82,10 @@ public class RectangularGrid<T> implements Grid<T> {
 
     }
 }
+
+/*
+ * Analysis
+ * 1: Quad Tree
+ * 2: Skip List
+ * 3: Sparse Array
+ */

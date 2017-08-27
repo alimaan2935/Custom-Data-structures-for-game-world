@@ -1,0 +1,114 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: World</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">au.edu.uq.itee.comp3506.assn1.gameworld</a> ]
+</div>
+
+<h1>Coverage Summary for Class: World (au.edu.uq.itee.comp3506.assn1.gameworld)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">World</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package au.edu.uq.itee.comp3506.assn1.gameworld;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import au.edu.uq.itee.comp3506.assn1.adts.GameList;
+<i>4</i>&nbsp;import au.edu.uq.itee.comp3506.assn1.adts.LinkedList;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;
+<b class="nc"><i>7</i>&nbsp;public class World {</b>
+<b class="nc"><i>8</i>&nbsp;	private GameList&lt;Room&gt; rooms = new LinkedList&lt;Room&gt;();</b>
+<i>9</i>&nbsp;	
+<i>10</i>&nbsp;	public void createLevel(int level) {
+<b class="nc"><i>11</i>&nbsp;		final int ROOMS_PER_LEVEL = 2;</b>
+<b class="nc"><i>12</i>&nbsp;		for (int i=0; i&lt;level*ROOMS_PER_LEVEL; i++){</b>
+<b class="nc"><i>13</i>&nbsp;			rooms.addToEnd(new Room());</b>
+<i>14</i>&nbsp;		}
+<i>15</i>&nbsp;	}
+<i>16</i>&nbsp;	
+<i>17</i>&nbsp;	@Override
+<i>18</i>&nbsp;	public String toString() {
+<b class="nc"><i>19</i>&nbsp;		int roomNumber = 0;</b>
+<b class="nc"><i>20</i>&nbsp;		StringBuilder gameStr = new StringBuilder();</b>
+<i>21</i>&nbsp;		
+<b class="nc"><i>22</i>&nbsp;		gameStr.append(&quot;Room &quot;).append(++roomNumber).append(&#39;\n&#39;);</b>
+<b class="nc"><i>23</i>&nbsp;		gameStr.append(rooms.getFirst());</b>
+<b class="nc"><i>24</i>&nbsp;		while (!rooms.isLast()) {</b>
+<b class="nc"><i>25</i>&nbsp;			gameStr.append(&quot;\nRoom &quot;).append(++roomNumber).append(&#39;\n&#39;);</b>
+<b class="nc"><i>26</i>&nbsp;			gameStr.append(rooms.getNext());</b>
+<i>27</i>&nbsp;		}
+<i>28</i>&nbsp;		
+<b class="nc"><i>29</i>&nbsp;		return gameStr.toString();</b>
+<i>30</i>&nbsp;	}
+<i>31</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-08-27 13:20</div>
+</div>
+</body>
+</html>

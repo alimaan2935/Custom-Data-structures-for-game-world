@@ -58,10 +58,10 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    95%
   </span>
   <span class="absValue">
-    (34/ 34)
+    (19/ 20)
   </span>
 </td>
 </tr>
@@ -84,95 +84,146 @@
 <i>10</i>&nbsp; * providing a mechanism to iterate over the collection via {@code firstItem} and {@code nextItem}.
 <i>11</i>&nbsp; * &lt;/p&gt;
 <i>12</i>&nbsp; *
-<i>13</i>&nbsp; * @author ALi Nawaz Maan &lt;a.maan@uqconnect.edu.au&gt;
-<i>14</i>&nbsp; *
-<i>15</i>&nbsp; * @param &lt;T&gt; The type of element held in the bag.
-<i>16</i>&nbsp; */
-<i>17</i>&nbsp;public class FixedSizeBag&lt;T&gt; implements RemovableBag&lt;T&gt; {
-<i>18</i>&nbsp;	private LinkedList&lt;T&gt; bag;
-<i>19</i>&nbsp;	private int maxItems;
-<i>20</i>&nbsp;
-<i>21</i>&nbsp;	/**
-<i>22</i>&nbsp;	 * Create a FixedSizeBag with 0 elements.
-<i>23</i>&nbsp;	 * @param size Maximum number of items that can be contained in the bag.
-<i>24</i>&nbsp;	 */
-<b class="fc"><i>25</i>&nbsp;	public FixedSizeBag(int size) {</b>
-<i>26</i>&nbsp;
-<b class="fc"><i>27</i>&nbsp;		if (size &lt;= 0) {</b>
-<b class="fc"><i>28</i>&nbsp;			throw new IllegalArgumentException(&quot;Bag size cannot be 0 or negative&quot;);</b>
-<b class="fc"><i>29</i>&nbsp;		}</b>
-<i>30</i>&nbsp;
-<b class="fc"><i>31</i>&nbsp;		this.bag = new LinkedList&lt;&gt;();</b>
-<b class="fc"><i>32</i>&nbsp;		this.maxItems = size;</b>
-<b class="fc"><i>33</i>&nbsp;	}</b>
-<i>34</i>&nbsp;
-<i>35</i>&nbsp;	/**
-<i>36</i>&nbsp;	 * Remove the item from the bag.
-<b class="fc"><i>37</i>&nbsp;	 * @param item The item to be removed.</b>
-<b class="fc"><i>38</i>&nbsp;	 * @return true if item is removed from the bag; false if item was not in bag.</b>
-<b class="fc"><i>39</i>&nbsp;	 */</b>
-<i>40</i>&nbsp;	public boolean remove(T item) {
-<b class="fc"><i>41</i>&nbsp;		if (this.bag.find(item)) {</b>
-<b class="fc"><i>42</i>&nbsp;			this.bag.remove();</b>
-<b class="fc"><i>43</i>&nbsp;			return true;</b>
-<i>44</i>&nbsp;		}
-<b class="fc"><i>45</i>&nbsp;		return false;</b>
-<i>46</i>&nbsp;
-<i>47</i>&nbsp;	}
-<i>48</i>&nbsp;
-<i>49</i>&nbsp;	/**
-<i>50</i>&nbsp;	 * Move the internal cursor to the next item in the bag.
-<b class="fc"><i>51</i>&nbsp;	 * If the internal cursor refers to the last item, do not move the cursor and return {@code null}.</b>
-<b class="fc"><i>52</i>&nbsp;	 * @return The next item or null if there is no next item.</b>
-<i>53</i>&nbsp;	 */
-<b class="fc"><i>54</i>&nbsp;	public T nextItem() {</b>
-<b class="fc"><i>55</i>&nbsp;		if (!this.bag.isLast()) {</b>
-<b class="fc"><i>56</i>&nbsp;			return this.bag.getNext();</b>
-<i>57</i>&nbsp;		}
-<b class="fc"><i>58</i>&nbsp;		return null;</b>
-<i>59</i>&nbsp;	}
-<i>60</i>&nbsp;
-<i>61</i>&nbsp;	/**
-<i>62</i>&nbsp;	 * Add an item to the bag.
-<b class="fc"><i>63</i>&nbsp;	 * @param item The item to be added.</b>
-<b class="fc"><i>64</i>&nbsp;	 * @return true if item is added to the bag; false if can&#39;t be added.</b>
-<i>65</i>&nbsp;	 */
-<b class="fc"><i>66</i>&nbsp;	public boolean add(T item) {</b>
-<b class="fc"><i>67</i>&nbsp;		if (this.bag.getSize() &lt; maxItems) {</b>
-<b class="fc"><i>68</i>&nbsp;			this.bag.insert(item);</b>
-<b class="fc"><i>69</i>&nbsp;		}else {</b>
-<b class="fc"><i>70</i>&nbsp;			return false;</b>
-<i>71</i>&nbsp;		}
-<i>72</i>&nbsp;
-<b class="fc"><i>73</i>&nbsp;		return this.bag.find(item);</b>
-<b class="fc"><i>74</i>&nbsp;	}</b>
-<i>75</i>&nbsp;
-<i>76</i>&nbsp;
-<i>77</i>&nbsp;	public int size() {
-<b class="fc"><i>78</i>&nbsp;		return this.bag.getSize();</b>
-<i>79</i>&nbsp;	}
-<i>80</i>&nbsp;
-<i>81</i>&nbsp;	/**
-<b class="fc"><i>82</i>&nbsp;	 * Set the internal cursor to refer to the first item in the bag.</b>
-<i>83</i>&nbsp;	 * @return The first item or null if bag is empty.
-<i>84</i>&nbsp;	 */
-<i>85</i>&nbsp;	public T firstItem() {
-<b class="fc"><i>86</i>&nbsp;		return this.bag.getFirst();</b>
-<i>87</i>&nbsp;	}
-<i>88</i>&nbsp;
-<b class="fc"><i>89</i>&nbsp;	/**</b>
-<i>90</i>&nbsp;	 * @return true if the internal cursor is at the last item in the bag; false otherwise.
-<i>91</i>&nbsp;	 */
-<i>92</i>&nbsp;	public boolean isLast() {
-<b class="fc"><i>93</i>&nbsp;		return this.bag.isLast();</b>
-<i>94</i>&nbsp;	}
-<i>95</i>&nbsp;}
+<i>13</i>&nbsp; * Memory Efficiency: O(n) - linear - This bag data structure implementation has a linear memory
+<i>14</i>&nbsp; * efficiency because the memory it takes depends on the number of elements currently present
+<i>15</i>&nbsp; * in the bag. The maximum size does not conform to memory efficiency because it is merely
+<i>16</i>&nbsp; * a constraint in this implementation.
+<i>17</i>&nbsp; *
+<i>18</i>&nbsp; * @author ALi Nawaz Maan &lt;a.maan@uqconnect.edu.au&gt;
+<i>19</i>&nbsp; *
+<i>20</i>&nbsp; * @param &lt;T&gt; The type of element held in the bag.
+<i>21</i>&nbsp; */
+<i>22</i>&nbsp;public class FixedSizeBag&lt;T&gt; implements RemovableBag&lt;T&gt; {
+<i>23</i>&nbsp;	private LinkedList&lt;T&gt; bag;
+<i>24</i>&nbsp;	private int maxItems;
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;	/**
+<i>27</i>&nbsp;	 * Create a FixedSizeBag with 0 elements.
+<i>28</i>&nbsp;	 *
+<i>29</i>&nbsp;	 * Runtime Efficiency: O(1) - constant - this is because this method only initializes a linked list
+<i>30</i>&nbsp;	 * object with no elements and also assigns a value to the class instance variable - size.
+<i>31</i>&nbsp;	 * These are all constant time operations. Initializing a LinkedList object is defined as constant time
+<i>32</i>&nbsp;	 * operation in the LinkedList CDT class.
+<i>33</i>&nbsp;	 *
+<i>34</i>&nbsp;	 * @param size Maximum number of items that can be contained in the bag.
+<i>35</i>&nbsp;	 */
+<b class="fc"><i>36</i>&nbsp;	public FixedSizeBag(int size) {</b>
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;		if (size &lt;= 0) {</b>
+<b class="nc"><i>39</i>&nbsp;			throw new IllegalArgumentException(&quot;Bag size cannot be 0 or negative&quot;);</b>
+<i>40</i>&nbsp;		}
+<i>41</i>&nbsp;
+<b class="fc"><i>42</i>&nbsp;		this.bag = new LinkedList&lt;&gt;();</b>
+<b class="fc"><i>43</i>&nbsp;		this.maxItems = size;</b>
+<b class="fc"><i>44</i>&nbsp;	}</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;	/**
+<i>47</i>&nbsp;	 * Remove the item from the bag.
+<i>48</i>&nbsp;	 *
+<i>49</i>&nbsp;	 * Runtime Efficiency: O(n) - linear - removing an element from the bag is linear time operation
+<i>50</i>&nbsp;	 * because the method has to find that particular element in the bag first and then remove it.
+<i>51</i>&nbsp;	 * This is related to LinkedList implementation as remove() method takes only constant time but find()
+<i>52</i>&nbsp;	 * method takes linear time.
+<i>53</i>&nbsp;	 *
+<i>54</i>&nbsp;	 * @param item The item to be removed.
+<i>55</i>&nbsp;	 * @return true if item is removed from the bag; false if item was not in bag.
+<i>56</i>&nbsp;	 */
+<i>57</i>&nbsp;	public boolean remove(T item) {
+<b class="fc"><i>58</i>&nbsp;		if (this.bag.find(item)) {</b>
+<b class="fc"><i>59</i>&nbsp;			this.bag.remove();</b>
+<b class="fc"><i>60</i>&nbsp;			return true;</b>
+<i>61</i>&nbsp;		}
+<b class="fc"><i>62</i>&nbsp;		return false;</b>
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;	}
+<i>65</i>&nbsp;
+<i>66</i>&nbsp;	/**
+<i>67</i>&nbsp;	 * Move the internal cursor to the next item in the bag.
+<i>68</i>&nbsp;	 * If the internal cursor refers to the last item, do not move the cursor and return {@code null}.
+<i>69</i>&nbsp;	 *
+<i>70</i>&nbsp;	 * Runtime Efficiency: O(1) - constant - this is because the method returns only next element from
+<i>71</i>&nbsp;	 * the current pointer position. This is a constant time operation as it refers to the getNext() method
+<i>72</i>&nbsp;	 * in the LinkedList implementation which is of O(1) runtime efficiency.
+<i>73</i>&nbsp;	 *
+<i>74</i>&nbsp;	 * @return The next item or null if there is no next item.
+<i>75</i>&nbsp;	 */
+<i>76</i>&nbsp;	public T nextItem() {
+<b class="fc"><i>77</i>&nbsp;		if (!this.bag.isLast()) {</b>
+<b class="fc"><i>78</i>&nbsp;			return this.bag.getNext();</b>
+<i>79</i>&nbsp;		}
+<b class="fc"><i>80</i>&nbsp;		return null;</b>
+<i>81</i>&nbsp;	}
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;	/**
+<i>84</i>&nbsp;	 * Add an item to the bag.
+<i>85</i>&nbsp;	 *
+<i>86</i>&nbsp;	 * Runtime Efficiency: O(1) - constant - this is because the method refers to insertion method of
+<i>87</i>&nbsp;	 * LinkedList implementation. It is constant time operation as it only corrects the next and
+<i>88</i>&nbsp;	 * previous references in the linked structure. Inserting an element into the bag does not
+<i>89</i>&nbsp;	 * result in any iteration or shuffling of elements.
+<i>90</i>&nbsp;	 *
+<i>91</i>&nbsp;	 * @param item The item to be added.
+<i>92</i>&nbsp;	 * @return true if item is added to the bag; false if can&#39;t be added.
+<i>93</i>&nbsp;	 */
+<i>94</i>&nbsp;	public boolean add(T item) {
+<b class="fc"><i>95</i>&nbsp;		if (this.bag.getSize() &lt; maxItems) {</b>
+<b class="fc"><i>96</i>&nbsp;			this.bag.insert(item);</b>
+<i>97</i>&nbsp;		}else {
+<b class="fc"><i>98</i>&nbsp;			return false;</b>
+<i>99</i>&nbsp;		}
+<i>100</i>&nbsp;
+<b class="fc"><i>101</i>&nbsp;		return this.bag.find(item);</b>
+<i>102</i>&nbsp;	}
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;	/**
+<i>105</i>&nbsp;	 * Accessor method for size
+<i>106</i>&nbsp;	 *
+<i>107</i>&nbsp;	 * Runtime Efficiency: O(1) - constant - this method just return the value stored in the
+<i>108</i>&nbsp;	 * instance variable (size) of the LinkedList object. No extra operation is performed so it is a constant
+<i>109</i>&nbsp;	 * time operation.
+<i>110</i>&nbsp;	 *
+<i>111</i>&nbsp;	 * @return int size of the list
+<i>112</i>&nbsp;	 */
+<i>113</i>&nbsp;
+<i>114</i>&nbsp;	public int size() {
+<b class="fc"><i>115</i>&nbsp;		return this.bag.getSize();</b>
+<i>116</i>&nbsp;	}
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;	/**
+<i>119</i>&nbsp;	 * Set the internal cursor to refer to the first item in the bag.
+<i>120</i>&nbsp;	 *
+<i>121</i>&nbsp;	 * Runtime Efficiency: O(1) - constant - this is because the method gets the first element in the bag and it can
+<i>122</i>&nbsp;	 * refer to it directly via LinkedList getFirst() method. That method is constant time operation so, bag&#39;s firstItem()
+<i>123</i>&nbsp;	 * method is also a constant time operation.
+<i>124</i>&nbsp;	 *
+<i>125</i>&nbsp;	 * @return The first item or null if bag is empty.
+<i>126</i>&nbsp;	 */
+<i>127</i>&nbsp;	public T firstItem() {
+<b class="fc"><i>128</i>&nbsp;		return this.bag.getFirst();</b>
+<i>129</i>&nbsp;	}
+<i>130</i>&nbsp;
+<i>131</i>&nbsp;	/**
+<i>132</i>&nbsp;	 * Runtime Efficiency: O(1) - constant - this method conforms to the LinkedList implementation of the method
+<i>133</i>&nbsp;	 * isLast(). It is a constant time operation as it only checks whether the pointer is at the last element
+<i>134</i>&nbsp;	 * or not. Basically, it checks if the next node of the linked structure is null or not.
+<i>135</i>&nbsp;	 *
+<i>136</i>&nbsp;	 * @return true if the internal cursor is at the last item in the bag; false otherwise.
+<i>137</i>&nbsp;	 */
+<i>138</i>&nbsp;	public boolean isLast() {
+<b class="fc"><i>139</i>&nbsp;		return this.bag.isLast();</b>
+<i>140</i>&nbsp;	}
+<i>141</i>&nbsp;}
+<i>142</i>&nbsp;
+<i>143</i>&nbsp;
+<i>144</i>&nbsp;/*
+<i>145</i>&nbsp; * Analysis
+<i>146</i>&nbsp; */
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2017-08-26 12:41</div>
+    <div style="float:right;">generated on 2017-08-27 13:20</div>
 </div>
 </body>
 </html>

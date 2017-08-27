@@ -9,26 +9,36 @@ import org.junit.Test;
 
 import au.edu.uq.itee.comp3506.assn1.gameworld.GameObject;
 
-import org.junit.Test;
+/**
+ * Test driver for the LinkedList.
+ * @author Ali Nawaz Maan <a.maan@uqconnect.edu.au>
+ */
 
 public class MyLinkedListTest {
 	private LinkedList<GameObject> list;
 
+	/**
+	 * Create an empty linked list structure
+	 */
 	@Before
 	public void createEmptyLinkedList() {
 		list = new LinkedList<GameObject>();
 	}
 
-	@Test
-	public void newListIsEmpty() {
-		assertThat("A newly created list is not empty.", list.isEmpty(), is(equalTo(true)));
-	}
-
+	/**
+	 * Try to remove an element from an empty list
+	 * @exception IndexOutOfBoundsException There is no element to be removed from the LinkedList
+	 */
 	@Test (expected = IndexOutOfBoundsException.class)
 	public void invalidRemoval() {
 		list.remove();
 	}
 
+	/**
+	 * Adding one item to the end of the LinkedList
+	 * The item added must be first and last item in the list
+	 * The size of the list must be 1
+	 */
 	@Test
 	public void addOneItem() {
 		GameObject itemToAdd = new GameObject("Item to be Added");
@@ -43,6 +53,11 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(1)));
 	}
 
+	/**
+	 * Inserting one item into the start of the LinkedList
+	 * The item added must be first and last item in the list.
+	 * The size of the list must be 1
+	 */
 	@Test
 	public void insertOneItem() {
 		GameObject itemToInsert = new GameObject("Item to be Inserted");
@@ -57,6 +72,12 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(1)));
 	}
 
+	/**
+	 * Adding two items to the end of the LinkedList
+	 * The first item added will be first item in the list and last one will be the last.
+	 * The pointer must be at the last position in the list.
+	 * The size of the list must be 2
+	 */
 	@Test
 	public void addTwoItems() {
 		GameObject item1ToAdd = new GameObject("Item 1");
@@ -73,6 +94,12 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(2)));
 	}
 
+	/**
+	 * Inserting two items at the start of the LinkedList
+	 * The first item added will be last item in the list and last one will be the first.
+	 * The pointer must not be at the first position in the list.
+	 * The size of the list must be 2
+	 */
 	@Test
 	public void insertTwoItems() {
 		GameObject item1ToInsert = new GameObject("Item 1");
@@ -89,6 +116,12 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(2)));
 	}
 
+	/**
+	 * Add three items at the end of the LinkedList
+	 * The first item added will be first item in the list and last one will be the last.
+	 * The middle item will be previous to the last and next to the first item in the list.
+	 * The size of the list must be 3
+	 */
 	@Test
 	public void addThreeItems() {
 		GameObject item1ToAdd = new GameObject("Item 1");
@@ -113,6 +146,13 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(3)));
 	}
 
+	/**
+	 * Insert three items at the start of the LinkedList
+	 * The first item added will be last item in the list and last one will be the first.
+	 * The middle item will be next to the first.
+	 * The pointer position is confirmed when calling the next method at the end of the list.
+	 * The size of the list must be 3
+	 */
 	@Test
 	public void insertThreeItems() {
 		GameObject item1ToInsert = new GameObject("Item 1");
@@ -137,6 +177,12 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(3)));
 	}
 
+	/**
+	 * Insert an element into somewhere middle of the list
+	 * The element inserted must be next to the previous position of the pointer.
+	 * Pointer position must be at the newly inserted item.
+	 * The size of the list must be 4
+	 */
 	@Test
 	public void insertIntoMiddle() {
 		GameObject item1ToInsert = new GameObject("Item 1");
@@ -165,13 +211,19 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(4)));
 	}
 
+	/**
+	 * Removing an inserted object from the list.
+	 * The pointer next and previous must be null after removal
+	 */
 	@Test (expected = NullPointerException.class)
 	public void removals1() {
 		GameObject item1ToInsert = new GameObject("Item 1");
 		list.insert(item1ToInsert);
 		assertThat("Pointer is not at the root position",
 				list.getPrevious(), is(equalTo(item1ToInsert)));
-		list.remove();
+
+		list.remove(); // Removal
+
 		assertThat("Next item of the pointer is not null",
 				list.getNext(), is(equalTo(NullPointerException.class)));
 		assertThat("Prev item of the pointer is not null",
@@ -179,6 +231,12 @@ public class MyLinkedListTest {
 
 	}
 
+	/**
+	 * Removing an object from the middle of the list.
+	 * The next and previous nodes in the list must be properly
+	 * connected after removing the object.
+	 * The size of the list must be 3 after removal
+	 */
 	@Test
 	public void removals2() {
 		GameObject item1ToInsert = new GameObject("Item 1");
@@ -210,6 +268,10 @@ public class MyLinkedListTest {
 				list.getSize(), is(equalTo(3)));
 	}
 
+	/**
+	 * Testing the pointer position and references after removal of an object
+	 * from the list. First and last elements must be null.
+	 */
 	@Test
 	public void removals3() {
 		GameObject item1ToInsert = new GameObject("Item 1");
@@ -219,11 +281,17 @@ public class MyLinkedListTest {
 				list.getFirst(), is(equalTo(null)));
 		assertThat("Last item of the list is not null",
 				list.getLast(), is(equalTo(null)));
-		assertThat("Last item of the list is not null",
+		assertThat("Pointer is at the last position of an empty list",
 				list.isLast(), is(equalTo(false)));
 
 	}
 
+	/**
+	 * Finding an element in the list.
+	 * The cursor must be at the element position after finding.
+	 * The method must be able to find the element wherever in the list
+	 * regardless of the pointer position.
+	 */
 	@Test
 	public void findItem() {
 		GameObject item1ToInsert = new GameObject("Item 1");

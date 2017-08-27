@@ -20,16 +20,20 @@ import java.util.ArrayList;
 public class MyFixedSizeBagTest {
 	private FixedSizeBag<GameObject> bag;
 
+	/**
+	 * Create an empty Fixed size bag structure
+	 */
 	@Before
 	public void setupFixedSizeBag() {
 		bag = new FixedSizeBag<GameObject>(5);
 	}
 
-	@Test
-	public void newBagIsEmpty() {
-		assertThat("A newly created bag does not have a size of 0.", bag.size(), is(equalTo(0)));
-	}
 
+	/**
+	 * Adding a single item into the bag.
+	 * The item added must be the first item in the bag and the size must be 1.
+	 * Also, the pointer position must be at that item's position.
+	 */
 	@Test
 	public void addOneItem() {
 		GameObject itemToAdd = new GameObject("Item to be Added");
@@ -41,36 +45,13 @@ public class MyFixedSizeBagTest {
 				bag.isLast(), is(equalTo(true)));
 	}
 
-	@Test
-	public void addMultipleItems() {
-		GameObject item1ToAdd = new GameObject("Item 1 to be Added");
-		GameObject item2ToAdd = new GameObject("Item 2 to be Added");
-		GameObject item3ToAdd = new GameObject("Item 3 to be Added");
-		bag.add(item1ToAdd);
-		bag.add(item2ToAdd);
-		bag.add(item3ToAdd);
-		assertThat("Bag size is not 3 after adding 3 items.", bag.size(), is(equalTo(3)));
-	}
 
+	/**
+	 * Removing the inserted items from the bag
+	 * Size must be reduced after removal of item.
+	 */
 	@Test
-	public void overFillBag() {
-		GameObject item1ToAdd = new GameObject("Item 1 to be Added");
-		GameObject item2ToAdd = new GameObject("Item 2 to be Added");
-		GameObject item3ToAdd = new GameObject("Item 3 to be Added");
-		GameObject item4ToAdd = new GameObject("Item 4 to be Added");
-		GameObject item5ToAdd = new GameObject("Item 5 to be Added");
-		GameObject itemTooManyToAdd = new GameObject("Item that should not be Added");
-		bag.add(item1ToAdd);
-		bag.add(item2ToAdd);
-		bag.add(item3ToAdd);
-		bag.add(item4ToAdd);
-		bag.add(item5ToAdd);
-		assertThat("Added more items than maximum size of bag.", bag.add(itemTooManyToAdd), is(equalTo(false)));
-		assertThat("Bag size is not 5 after over filling a bag with a maximum size of 5.", bag.size(), is(equalTo(5)));
-	}
-
-	@Test
-	public void removals1() {
+	public void removals() {
 		GameObject item1ToAdd = new GameObject("Item 1 to be Added");
 		GameObject item2ToAdd = new GameObject("Item 2 to be Added");
 		GameObject item3ToAdd = new GameObject("Item 3 to be Added");
@@ -81,8 +62,14 @@ public class MyFixedSizeBagTest {
 		bag.add(item4ToAdd);
 		assertThat("Item 2 was not removed from the bag", bag.remove(item2ToAdd), is(equalTo(true)));
 		assertThat("Item 2 was not removed from the bag previously", bag.remove(item2ToAdd), is(equalTo(false)));
+		assertThat("Size of the bag is not 3 after removal", bag.size(), is(equalTo(3)));
+
 	}
 
+	/**
+	 * Iterating through the items of the bag
+	 * Confirming that all the items have been accessed.
+	 */
 	@Test
 	public void nextItems() {
 		GameObject item1ToAdd = new GameObject("Item 1 to be Added");
