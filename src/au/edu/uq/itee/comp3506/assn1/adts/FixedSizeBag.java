@@ -142,5 +142,16 @@ public class FixedSizeBag<T> implements RemovableBag<T> {
 
 
 /*
- * Analysis
+ * Analysis:
+ * The implementation the bag conforms to the implementation of LinkedList implementation as the structure
+ * refers to the LinkedList object for its methods to work. The bag implementation in the game world requires
+ * a data structure with optionally randomly accessed objects but also an implied internal ordering for
+ * traversing through the elements of the structure. This implementation will suffice as it is efficient
+ * in terms of both time and space.
+ * The memory usage of this implementation is efficient because it will only take space relative to
+ * the number of elements rather than its max elements. Hence, a large capacity empty bag will not take any more
+ * space than a small capacity empty bag.
+ * In terms of runtime efficiency, the player needs to get an item from the bag with speed and need to find the next
+ * item available. This can happen very efficiently in this particular implementation as traversing through
+ * the bag and finding the next element available is constant time operation.
  */

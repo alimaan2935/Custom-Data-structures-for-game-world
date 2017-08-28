@@ -346,5 +346,22 @@ public class LinkedList<T> implements GameList<T> {
 }
 
 /*
- * Analysis
+ * Analysis:
+ * The implementation is a doubly linked list with pointer created as an additional node which is just
+ * a copy of referenced node in the list. The choice of structure is made because of its efficiency to
+ * store data, extend number of elements stored, adding new elements and removing elements in terms
+ * of both time and space. This implementation "allow a greater variety of O(1)-time update operations,
+ * including insertions and deletions at arbitrary positions within the list". (Goodrich, c2014)
+ * Although finding an element in the list is not so efficient as array form of data structures, the
+ * implementation is very suitable for the game world objects. This is true for the fact that in this
+ * implementation of game world, linked list structure holds rooms with game objects. That indicates
+ * that the data structure needed here requires to be time and space efficient in terms to manipulation
+ * rather than iteration.
+ * This implementation of the LinkedList in the context of game world can be extended to become multi-
+ * dimensional linked list. For example, instead of limiting the world with rooms next and previous
+ * to each other, we can have rooms sideways as well.
+ *
+ *
+ * Reference:
+ * Goodrich, M.T Tamassia, R & Goldwasser, M.H. (c2014). Fundamental Data Structures. in Data Structures & Algorithms in Java (pp. 132). United States: John Wiley & Sons, Inc.
  */
