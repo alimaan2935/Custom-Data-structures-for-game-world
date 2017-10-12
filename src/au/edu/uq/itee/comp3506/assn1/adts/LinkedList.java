@@ -345,7 +345,7 @@ public class LinkedList<T> implements GameList<T> {
 	}
 }
 
-/*
+/**
  * Analysis:
  * The implementation is a doubly linked list with pointer created as an additional node which is just
  * a copy of referenced node in the list. The choice of structure is made because of its efficiency to
